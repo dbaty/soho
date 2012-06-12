@@ -1,0 +1,14 @@
+To do
+=====
+
+- implement filters. Contrary to Soho 0.7, they should probably be set
+  by file.
+
+- add tests
+
+- rewrite documentation with Sphinx, with some rough notes on how to
+  upgrade from Soho 0.7
+
+- complete tutorial
+
+- publish on readthedocs.org, Travis CI and PyPI.

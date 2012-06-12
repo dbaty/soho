@@ -1,0 +1,3 @@
+<p>This is a paragraph.</p>
+<p tal:content="foo"/>
+<p i18n:translate="">.detalsnart ma I</p>
