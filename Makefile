@@ -58,4 +58,6 @@ clean:
 	rm -rf ./dist/
 	rm -rf $(tmp_dir)
 	rm -rf .tox
+	rm -f coverage.xml
+	rm -f nosetests.xml
 	find . -name "*.pyc" | xargs rm -f
