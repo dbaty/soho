@@ -1,0 +1,1 @@
+foo = 'Value of foo'
