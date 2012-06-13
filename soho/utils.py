@@ -20,7 +20,8 @@ def register_plugin(registry, spec, *keys):
 def _read_metadata_from_file(path):
     metadata = {}
     if os.path.exists(path):
-        execfile(path, {}, metadata)
+        with open(path) as fp:
+            exec(fp.read(), {}, metadata)
     return metadata
 
 

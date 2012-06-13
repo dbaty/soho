@@ -93,7 +93,7 @@ def get_settings(options):
         if option in PATH_SETTINGS:
             settings[option] = os.path.expanduser(value)
         elif option in REGEXP_SETTINGS:
-            settings[option] = map(re.compile, value)
+            settings[option] = [re.compile(exp) for exp in value]
 
     settings['logger'] = get_logger(settings.pop('logger_level'),
                                     settings.pop('logger_filename'))
@@ -110,7 +110,8 @@ def get_settings(options):
 def get_settings_from_conf(path):
     """Return settings as a mapping."""
     settings = {}
-    execfile(path, {}, settings)
+    with open(path) as fp:
+        exec(fp.read(), {}, settings)
     return settings
 
 

@@ -23,7 +23,7 @@ class TranslatorWrapper(object):
                     continue
                 domain = filename[:-3]
                 mo_path = os.path.join(msg_dir_path, filename)
-                with open(mo_path) as fp:
+                with open(mo_path, 'rb') as fp:
                     translator = Translator(GNUTranslations(fp))
                     self.translators[locale][domain] = translator
 

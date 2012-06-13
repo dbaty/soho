@@ -176,7 +176,8 @@ class Builder(object):
                              out_path)
             return
         self.logger.info('Copying "%s" to "%s"' % (in_path, out_path))
-        shutil.copy2(in_path, out_path)
+        if not self._do_nothing:
+            shutil.copy2(in_path, out_path)
 
     def process_src_file(self, in_path, relative_path, dir_metadata):
         out_path = os.path.join(self._out_dir, relative_path)
@@ -195,7 +196,8 @@ class Builder(object):
         if generator is None:
             self.logger.info('Could not find any generator for "%s", '
                              'copying it as is.', in_path)
-            shutil.copy2(in_path, out_path)
+            if not self._do_nothing:
+                shutil.copy2(in_path, out_path)
             return 1
         # FIXME: enable pre filters
         #for filter in self._pre_filters:
@@ -217,7 +219,7 @@ class Builder(object):
         #for filter in self._post_filters:
         #    content = filter(html_output)
         if not self._do_nothing:
-            with open(out_path, 'w+') as out:
+            with open(out_path, 'wb+') as out:
                 out.write(html_output.encode(ENCODING))
 
     def ignore_file(self, relative_path):
