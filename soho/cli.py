@@ -22,9 +22,11 @@ def main():
 
 
 def parse_args():
-    parser = ArgumentParser(usage='%prog [options]',
-                            version='%%prog %s' % VERSION)
+    parser = ArgumentParser(usage='%(prog)s [options]')
     add = parser.add_argument
+    add('-v', '--version',
+        action='version',
+        version='%%(prog)s %s' % VERSION)
     add('-c',
         metavar="CONFIG-FILE",
         help='Use CONFIG-FILE. '
