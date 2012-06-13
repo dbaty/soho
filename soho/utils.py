@@ -6,6 +6,19 @@ from soho.config import METADATA_FILE_SUFFIX
 
 
 def register_plugin(registry, spec, *keys):
+    """Register a plugin.
+
+    ``registry``
+        should be a dict-like object.
+
+    ``spec``
+        the full path to a class, e.g.
+        ``'soho.renderers.zpt.ZPTRenderer'``.
+
+    ``keys``
+        one or more keys under which the plugin will be registered. At
+        least one key must be provided.
+    """
     module, klass = spec.rsplit('.', 1)
     try:
         plugin = __import__(module)
@@ -26,28 +39,40 @@ def _read_metadata_from_file(path):
 
 
 def read_file_metadata(file_path):
+    """Return metadata associated to the given file (if any)."""
     path = '%s%s' % (file_path, METADATA_FILE_SUFFIX)
     return _read_metadata_from_file(path)
 
 
 def read_dir_metadata(dir_path):
+    """Return metadata associated to the given directory (if any)."""
     path = os.path.join(dir_path, METADATA_FILE_SUFFIX)
     return _read_metadata_from_file(path)
 
 
 def hide_index_html_from(path):
+    """Remove ``index.html`` suffix as well as trailing slashes (if
+    any).
+    """
     if not path.endswith('index.html'):
         return path
     return path[:-10].rstrip('/')
 
 
 class SiteMap(object):
+    """A class that can generate Sitemap files.
+
+    See `<http://www.sitemaps.org/>`_ for further details about the
+    format of the file.
+    """
+
     def __init__(self, path, encoding='utf-8'):
         self.encoding = encoding
         self.path = path
         self.urls = []
 
     def add(self, path, url, change_freq, priority):
+        """Add a URL to the Sitemap."""
         mtime = time.localtime(os.stat(path).st_mtime)
         last_mod = time.strftime('%Y-%m-%d', mtime)
         self.urls.append({'url': url,
@@ -56,6 +81,7 @@ class SiteMap(object):
                           'priority': str(priority)})
 
     def write(self):
+        """Write the Sitemap to a file."""
         with open(self.path, 'w+') as out:
             out.write('<?xml version="1.0" encoding="%s"?>\n' % self.encoding)
             ns = 'http://www.sitemaps.org/schemas/sitemap/0.9'

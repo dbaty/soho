@@ -5,6 +5,10 @@ from translationstring import Translator
 
 
 class TranslatorWrapper(object):
+    """A wrapper that hold instances of ``gettext.GNUTranslations``
+    and take care of choosing the right one depending on the domain
+    and the locale that are requested at translation time.
+    """
 
     def __init__(self, locale_dir):
         self.translators = {}
