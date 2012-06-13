@@ -12,10 +12,11 @@ extras_require = {'i18n': ('translationstring', ),
                   'rst': ('docutils',
                           'pygments'),
                   'zpt': ('chameleon', )}
+all_extras = tuple(itertools.chain(*extras_require.values()))
+extras_require['all'] = all_extras
 # Sphinx is not required but can be installed to benefit from several
 # extra ReST directives it defines.
-tests_require = ('mock', 'sphinx') + tuple(
-    itertools.chain(*extras_require.values()))
+tests_require = ('mock', 'sphinx') + all_extras
 
 
 setup(name='Soho',
