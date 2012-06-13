@@ -8,16 +8,11 @@ here = os.path.abspath(os.path.dirname(__file__))
 readme = open(os.path.join(here, 'README.rst')).read()
 changes = open(os.path.join(here, 'CHANGES.rst')).read()
 requires = ()
-# Babel and Lingua are not required by Soho but provide helpful tools
-# to users to extract messages from content and templates, generate
-# files in the GNU gettext format, etc.
-extras_require = {'i18n': ('babel',
-                           'lingua',
-                           'translationstring'),
+extras_require = {'i18n': ('translationstring', ),
                   'rst': ('docutils',
                           'pygments'),
                   'zpt': ('chameleon', )}
-# Sphinx is not required but can be installed to benefit from the
+# Sphinx is not required but can be installed to benefit from several
 # extra ReST directives it defines.
 tests_require = ('mock', 'sphinx') + tuple(
     itertools.chain(*extras_require.values()))
