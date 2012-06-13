@@ -31,6 +31,36 @@ class TestRegisterPlugin(TestCase):
         mock_debug.assert_called_with(error, 'does.not.exist')
 
 
+class TestReadFileMetadata(TestCase):
+    def _call_fut(self, path):
+        from soho.utils import read_file_metadata
+        return read_file_metadata(path)
+
+    def test_basics(self):
+        import os
+        here = os.path.dirname(__file__)
+        path = os.path.join(here, 'fixtures', 'test2.html')
+        self.assertEqual(self._call_fut(path), {'foo': 'Value of foo'})
+
+    def test_file_does_not_exist(self):
+        self.assertEqual(self._call_fut('/does/not/exist'), {})
+
+
+class TestReadDirMetadata(TestCase):
+    def _call_fut(self, path):
+        from soho.utils import read_dir_metadata
+        return read_dir_metadata(path)
+
+    def test_basics(self):
+        import os
+        here = os.path.dirname(__file__)
+        path = os.path.join(here, 'fixtures')
+        self.assertEqual(self._call_fut(path), {'foo': 'Value of foo'})
+
+    def test_file_does_not_exist(self):
+        self.assertEqual(self._call_fut('/does/not/exist'), {})
+
+
 class TestHideIndexHtmlFrom(TestCase):
 
     def test_basics(self):
