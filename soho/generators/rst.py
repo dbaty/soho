@@ -30,8 +30,6 @@ try:
         def __getattr__(self, attr):
             name = '.'.join((self.name, attr))
             return Mock(name)
-        def __call__(self, *args, **kwargs):
-            return ''
     class HTMLTranslatorWrapper(HTMLTranslator):
         def __init__(self, *args, **kwargs):
             builder = FakeBuilder()

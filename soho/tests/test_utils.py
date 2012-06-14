@@ -91,10 +91,11 @@ class TestSitemap(TestCase):
     @mock.patch('time.localtime', time.gmtime)
     @mock.patch('os.stat', mock_os_stat)
     def test_basics(self):
-        try:
+        try:  # pragma: no coverage
             from StringIO import StringIO
-        except:  # Python 3
-            from io import StringIO
+        except:  # pragma: no coverage
+            # Python 3
+            from io import StringIO  # pyflakes: ignore
         b = 'http://exemple.com/'
         sitemap = self._make_one()
         sitemap.add('foo', b + 'foo', 'monthly', 0.5)

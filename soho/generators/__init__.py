@@ -10,7 +10,7 @@ class BaseGenerator(object):
     def read_metadata_from_file(self, path):
         return read_file_metadata(path)
 
-    def generate(self, path):
+    def generate(self, path):  # pragma: no coverage
         raise NotImplementedError
 
 

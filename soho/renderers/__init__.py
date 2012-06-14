@@ -5,10 +5,10 @@ registry = {}
 
 
 class BaseRenderer(object):
-    def __init__(self, template_path):
+    def __init__(self, template_path):  # pragma: no coverage
         raise NotImplementedError
 
-    def render(self, **bindings):
+    def render(self, **bindings):  # pragma: no coverage
         raise NotImplementedError
 
 
