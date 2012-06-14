@@ -172,8 +172,8 @@ class Builder(object):
     def copy_asset(self, in_path, relative_path, *_ignored_args):
         out_path = os.path.join(self._out_dir, relative_path)
         if not self.should_overwrite(out_path, in_path):
-            self.logger.info('Not overwriting "%s", it seems up to date.',
-                             out_path)
+            self.logger.debug('Not overwriting "%s", it seems up to date.',
+                              out_path)
             return
         self.logger.info('Copying "%s" to "%s"' % (in_path, out_path))
         if not self._do_nothing:
@@ -182,8 +182,8 @@ class Builder(object):
     def process_src_file(self, in_path, relative_path, dir_metadata):
         out_path = os.path.join(self._out_dir, relative_path)
         if not self.should_overwrite(out_path, in_path):
-            self.logger.info('Not overwriting "%s", it seems up to date.',
-                             out_path)
+            self.logger.debug('Not overwriting "%s", it seems up to date.',
+                              out_path)
             return
         if self.sitemap:
             url = '/'.join((self._base_url, relative_path))
