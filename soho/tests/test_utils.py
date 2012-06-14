@@ -1,3 +1,4 @@
+import time
 from unittest import TestCase
 
 import mock
@@ -69,3 +70,52 @@ class TestHideIndexHtmlFrom(TestCase):
         self.assertEqual(hide_index_html_from('index.html'), '')
         self.assertEqual(hide_index_html_from('/index.html'), '')
         self.assertEqual(hide_index_html_from('foo/index.html'), 'foo')
+
+
+def mock_os_stat(path):
+    from collections import namedtuple
+    t = {'foo': 1234567890,
+         'bar': 123456789}[path]
+    return namedtuple('Stat', 'st_mtime')(t)
+
+
+class TestSitemap(TestCase):
+
+    def _make_one(self):
+        from soho.utils import Sitemap
+        return Sitemap()
+
+    # Your 'time.localtime(t)' may return a different date than mine
+    # if we are not on the same timezone. Here we use 'time.gmtime()'
+    # instead which will return the same result everywhere.
+    @mock.patch('time.localtime', time.gmtime)
+    @mock.patch('os.stat', mock_os_stat)
+    def test_basics(self):
+        try:
+            from StringIO import StringIO
+        except:  # Python 3
+            from io import StringIO
+        b = 'http://exemple.com/'
+        sitemap = self._make_one()
+        sitemap.add('foo', b + 'foo', 'monthly', 0.5)
+        sitemap.add('bar', b + 'bar', 'weekly', '0.4')
+        out = StringIO()
+        sitemap.write(out)
+        expected = [
+            '<?xml version="1.0" encoding="utf-8"?>',
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+            '  <url>',
+            '    <loc>http://exemple.com/foo</loc>',
+            '    <lastmod>2009-02-13</lastmod>',
+            '    <changefreq>monthly</changefreq>',
+            '    <priority>0.5</priority>',
+            '  </url>',
+            '',
+            '  <url>',
+            '    <loc>http://exemple.com/bar</loc>',
+            '    <lastmod>1973-11-29</lastmod>',
+            '    <changefreq>weekly</changefreq>',
+            '    <priority>0.4</priority>',
+            '  </url>',
+            '</urlset>']
+        self.assertEqual(out.getvalue().split('\n'), expected)

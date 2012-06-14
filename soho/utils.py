@@ -59,16 +59,14 @@ def hide_index_html_from(path):
     return path[:-10].rstrip('/')
 
 
-class SiteMap(object):
+class Sitemap(object):
     """A class that can generate Sitemap files.
 
     See `<http://www.sitemaps.org/>`_ for further details about the
     format of the file.
     """
 
-    def __init__(self, path, encoding='utf-8'):
-        self.encoding = encoding
-        self.path = path
+    def __init__(self):
         self.urls = []
 
     def add(self, path, url, change_freq, priority):
@@ -80,18 +78,17 @@ class SiteMap(object):
                           'change_freq': change_freq,
                           'priority': str(priority)})
 
-    def write(self):
-        """Write the Sitemap to a file."""
-        with open(self.path, 'w+') as out:
-            out.write('<?xml version="1.0" encoding="%s"?>\n' % self.encoding)
-            ns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
-            out.write('<urlset xmlns="%s">' % ns)
-            for url in self.urls:
-                out.write('\n'
-                          '  <url>\n'
-                          '    <loc>%(url)s</loc>\n'
-                          '    <lastmod>%(last_mod)s</lastmod>\n'
-                          '    <changefreq>%(change_freq)s</changefreq>\n'
-                          '    <priority>%(priority)s</priority>\n'
-                          '  </url>\n' % url)
-            out.write('</urlset>')
+    def write(self, out):
+        """Write the Sitemap to the given ``out`` stream."""
+        out.write('<?xml version="1.0" encoding="utf-8"?>\n')
+        ns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
+        out.write('<urlset xmlns="%s">' % ns)
+        for url in self.urls:
+            out.write('\n'
+                      '  <url>\n'
+                      '    <loc>%(url)s</loc>\n'
+                      '    <lastmod>%(last_mod)s</lastmod>\n'
+                      '    <changefreq>%(change_freq)s</changefreq>\n'
+                      '    <priority>%(priority)s</priority>\n'
+                      '  </url>\n' % url)
+        out.write('</urlset>')

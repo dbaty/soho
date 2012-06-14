@@ -9,7 +9,7 @@ from soho.i18n import TranslatorWrapper
 from soho.renderers import get_renderer
 from soho.utils import hide_index_html_from
 from soho.utils import read_dir_metadata
-from soho.utils import SiteMap
+from soho.utils import Sitemap
 
 
 class Builder(object):
@@ -106,9 +106,11 @@ class Builder(object):
         self._hide_index_html = hide_index_html
         if sitemap:
             self._base_url = base_url
-            self.sitemap = SiteMap(os.path.join(out_dir, sitemap))
+            self._sitemap_path = os.path.join(out_dir, sitemap)
+            self.sitemap = Sitemap()
         else:
             self.sitemap = None
+        self._changed = False
 
     def load_translations(self, locale_dir):
         self.translators = TranslatorWrapper(locale_dir)
@@ -141,10 +143,14 @@ class Builder(object):
                              callback=self.process_src_file,
                              read_metadata=True,
                              inherited_metadata={})
-            self.logger.info('Web site has been built.')
-        if self.sitemap:
-            if self._force or not os.path.exists(self.sitemap.path):
-                self.sitemap.write()
+        if self.sitemap and (self._changed or self._force):
+            self.logger.info('Generated Sitemap...')
+            if not self._do_nothing:
+                with open(self._sitemap_path, 'w+') as out:
+                    self.sitemap.write(out)
+        self.logger.info('Done.')
+        if self._do_nothing:
+            self.logger.info('Dry run. No files have been harmed.')
 
     def process_dir(self, base_dir, dir_path, callback, read_metadata,
                     inherited_metadata=None):
@@ -181,15 +187,19 @@ class Builder(object):
 
     def process_src_file(self, in_path, relative_path, dir_metadata):
         out_path = os.path.join(self._out_dir, relative_path)
+        relative_url = relative_path.replace(os.sep, '/')
+        if self._hide_index_html:
+            relative_url = hide_index_html_from(relative_url)
+        if relative_url[0] != '/':
+            relative_url = '/%s' % relative_url
+        if self.sitemap:
+            url = self._base_url + relative_url
+            self.sitemap.add(in_path, url, 'monthly', 0.5)
         if not self.should_overwrite(out_path, in_path):
             self.logger.debug('Not overwriting "%s", it seems up to date.',
                               out_path)
             return
-        if self.sitemap:
-            url = '/'.join((self._base_url, relative_path))
-            if self._hide_index_html:
-                url = hide_index_html_from(url)
-            self.sitemap.add(in_path, url, 'monthly', 0.5)
+        self._changed = True
         self.logger.info('Processing "%s" (writing in "%s").',
                          in_path, out_path)
         generator = get_generator(in_path)
@@ -205,11 +215,6 @@ class Builder(object):
         metadata = deepcopy(dir_metadata)
         file_metadata, body = generator.generate(in_path)
         metadata.update(file_metadata)
-        relative_url = relative_path.replace(os.sep, '/')
-        if self._hide_index_html:
-            relative_url = hide_index_html_from(relative_url)
-        if relative_url[0] != '/':
-            relative_url = '/%s' % relative_url
         metadata.update(path=relative_url)
         template_path = os.path.join(self._template_dir, self._template)
         renderer = get_renderer(template_path, self.translate)
