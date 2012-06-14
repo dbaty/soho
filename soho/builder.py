@@ -208,6 +208,8 @@ class Builder(object):
         relative_url = relative_path.replace(os.sep, '/')
         if self._hide_index_html:
             relative_url = hide_index_html_from(relative_url)
+        if relative_url[0] != '/':
+            relative_url = '/%s' % relative_url
         metadata.update(path=relative_url)
         template_path = os.path.join(self._template_dir, self._template)
         renderer = get_renderer(template_path, self.translate)
