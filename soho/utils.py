@@ -83,7 +83,7 @@ class Sitemap(object):
         out.write('<?xml version="1.0" encoding="utf-8"?>\n')
         ns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
         out.write('<urlset xmlns="%s">' % ns)
-        for url in sorted(self.urls, lambda a, b: cmp(a['url'], b['url'])):
+        for url in sorted(self.urls, key=lambda a: a['url']):
             out.write('\n'
                       '  <url>\n'
                       '    <loc>%(url)s</loc>\n'
