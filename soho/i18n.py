@@ -1,7 +1,23 @@
 from gettext import GNUTranslations
 import os
+import re
 
 from translationstring import Translator
+
+
+INTERPOLATE_REGEXP = re.compile('\${(\w*)}')
+
+
+def interpolate(s, mapping):
+    """Interpolate params in the given string ``s`` with values
+    provided in ``mapping`` (if any).
+    """
+    if not mapping:
+        return s
+    def _sub(matchobj):
+        var = matchobj.group(1)
+        return mapping.get(var, matchobj.group(0))
+    return INTERPOLATE_REGEXP.sub(_sub, s)
 
 
 class TranslatorWrapper(object):
@@ -36,5 +52,5 @@ class TranslatorWrapper(object):
         try:
             translator = self.translators[locale][domain]
         except KeyError:
-            return msgid
+            return interpolate(msgid, mapping)
         return translator(msgid, domain, mapping)

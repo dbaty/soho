@@ -1,3 +1,4 @@
+from collections import namedtuple
 import time
 from unittest import TestCase
 
@@ -73,7 +74,6 @@ class TestHideIndexHtmlFrom(TestCase):
 
 
 def mock_os_stat(path):
-    from collections import namedtuple
     t = {'foo': 1234567890,
          'bar': 123456789}[path]
     return namedtuple('Stat', 'st_mtime')(t)
@@ -106,17 +106,17 @@ class TestSitemap(TestCase):
             '<?xml version="1.0" encoding="utf-8"?>',
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
             '  <url>',
-            '    <loc>http://exemple.com/foo</loc>',
-            '    <lastmod>2009-02-13</lastmod>',
-            '    <changefreq>monthly</changefreq>',
-            '    <priority>0.5</priority>',
-            '  </url>',
-            '',
-            '  <url>',
             '    <loc>http://exemple.com/bar</loc>',
             '    <lastmod>1973-11-29</lastmod>',
             '    <changefreq>weekly</changefreq>',
             '    <priority>0.4</priority>',
+            '  </url>',
+            '',
+            '  <url>',
+            '    <loc>http://exemple.com/foo</loc>',
+            '    <lastmod>2009-02-13</lastmod>',
+            '    <changefreq>monthly</changefreq>',
+            '    <priority>0.5</priority>',
             '  </url>',
             '</urlset>']
         self.assertEqual(out.getvalue().split('\n'), expected)

@@ -1,0 +1,1 @@
+<div class="content" tal:content="structure body"/>

@@ -5,6 +5,7 @@ import shutil
 from soho.config import ENCODING
 from soho.config import METADATA_FILE_SUFFIX
 from soho.generators import get_generator
+from soho.i18n import interpolate
 from soho.i18n import TranslatorWrapper
 from soho.renderers import get_renderer
 from soho.utils import hide_index_html_from
@@ -16,7 +17,7 @@ class Builder(object):
     """Driver class."""
 
     def __init__(self, asset_dir, assets_only, base_url, do_nothing,
-                 filters, force, hide_index_html, i18n_dir,
+                 filters, force, hide_index_html, locale_dir,
                  ignore_files, logger, out_dir, src_dir, sitemap,
                  template, template_dir):
         """Initialize the builder.
@@ -57,14 +58,14 @@ class Builder(object):
 
             - URLs in the Sitemap (if it is generated).
 
-        ``i18n_dir``
-            directory where translations are stored (usually a
-            directory called ``locale``).
-
         ``ignore_files``
             a (possibly empty) list of regular expressions. If the
             path of a file matches one of these expressions, it will
             not be processed.
+
+        ``locale_dir``
+            directory where translations are stored (usually a
+            directory called ``locale``).
 
         ``logger``
             the logger to be used. Duh.
@@ -83,12 +84,13 @@ class Builder(object):
             directory where templates live (if any).
         """
         self.logger = logger
-        self._src_dir = os.path.normpath(src_dir)
-        self._asset_dir = os.path.normpath(asset_dir)
-        self._template_dir = os.path.normpath(template_dir)
-        self.load_translations(i18n_dir)
+        self._src_dir = src_dir
+        self._asset_dir = asset_dir
+        self._template_dir = template_dir
+        if locale_dir:
+            self.load_translations(locale_dir)
         self._template = template
-        self._out_dir = os.path.normpath(out_dir)
+        self._out_dir = out_dir
 
         # FIXME: register filters
         #if filters is not None:
@@ -124,18 +126,19 @@ class Builder(object):
         requested by the template.
         """
         if context is None:
-            return msgid
+            return interpolate(msgid, mapping)
         locale = context['md']['locale']
         return self.translators.translate(locale, msgid, domain, mapping)
 
     def build(self):
         if self._do_nothing:
             self.logger.info('Dry run. No files will be harmed, I promise.')
-        self.logger.info('Copying assets...')
-        self.process_dir(self._asset_dir,
-                         self._asset_dir,
-                         callback=self.copy_asset,
-                         read_metadata=False)
+        if self._asset_dir:
+            self.logger.info('Copying assets...')
+            self.process_dir(self._asset_dir,
+                             self._asset_dir,
+                             callback=self.copy_asset,
+                             read_metadata=False)
         if not self._assets_only:
             self.logger.info('Building HTML files...')
             self.process_dir(self._src_dir,
@@ -188,9 +191,13 @@ class Builder(object):
     def process_src_file(self, in_path, relative_path, dir_metadata):
         out_path = os.path.join(self._out_dir, relative_path)
         relative_url = relative_path.replace(os.sep, '/')
+        generator = get_generator(in_path)
+        if generator is not None:
+            out_path = '%s.html' % os.path.splitext(out_path)[0]
+            relative_url = '%s.html' % os.path.splitext(relative_url)[0]
         if self._hide_index_html:
             relative_url = hide_index_html_from(relative_url)
-        if relative_url[0] != '/':
+        if not relative_url or relative_url[0] != '/':
             relative_url = '/%s' % relative_url
         if self.sitemap:
             url = self._base_url + relative_url
@@ -200,15 +207,14 @@ class Builder(object):
                               out_path)
             return
         self._changed = True
-        self.logger.info('Processing "%s" (writing in "%s").',
-                         in_path, out_path)
-        generator = get_generator(in_path)
         if generator is None:
             self.logger.info('Could not find any generator for "%s", '
                              'copying it as is.', in_path)
             if not self._do_nothing:
                 shutil.copy2(in_path, out_path)
             return 1
+        self.logger.info('Processing "%s" (writing in "%s").',
+                         in_path, out_path)
         # FIXME: enable pre filters
         #for filter in self._pre_filters:
         #    source = filter(source)

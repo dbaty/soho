@@ -11,7 +11,7 @@ from soho.config import PATH_SETTINGS
 from soho.config import REGEXP_SETTINGS
 
 
-def main():
+def main():  # pragma: no coverage
     """Read options from the command-line and the configuration file
     and build the site.
     """
@@ -21,7 +21,7 @@ def main():
     builder.build()
 
 
-def parse_args():
+def parse_args():  # pragma: no coverage
     parser = ArgumentParser(usage='%(prog)s [options]')
     add = parser.add_argument
     add('-v', '--version',
@@ -59,6 +59,8 @@ def get_settings(options):
         conf_path = options.config_file
     else:
         conf_path = defaults.DEFAULT_CONFIG_FILE
+    conf_path = os.path.abspath(conf_path)
+    conf_dir = os.path.dirname(conf_path)
     exit_if_file_absent(conf_path)
     settings = get_settings_from_conf(conf_path)
 
@@ -71,7 +73,7 @@ def get_settings(options):
                    'filters',
                    'force',
                    'hide_index_html',
-                   'i18n_dir',
+                   'locale_dir',
                    'ignore_files',
                    'logger_level',
                    'logger_filename',
@@ -84,7 +86,7 @@ def get_settings(options):
         if value is not None:
             # Use value provided via the command-line
             settings[option] = value
-        elif not settings.get(option):
+        elif option not in settings:
             # Use default value for this missing option
             settings[option] = getattr(defaults, 'DEFAULT_' + option.upper())
 
@@ -94,18 +96,31 @@ def get_settings(options):
             continue
         if option in PATH_SETTINGS:
             settings[option] = os.path.expanduser(value)
+            # If path starts with './', it means that the path is
+            # relative to the configuration file. Otherwise, suppose
+            # that it is an absolute path or a path relative to the
+            # working directory.
+            if settings[option].startswith('.%s' % os.path.sep):
+                settings[option] = os.path.join(conf_dir, settings[option])
+            settings[option] = os.path.abspath(settings[option])
         elif option in REGEXP_SETTINGS:
             settings[option] = [re.compile(exp) for exp in value]
 
     settings['logger'] = get_logger(settings.pop('logger_level'),
                                     settings.pop('logger_filename'))
 
-    # Check files and directory existence
-    for option in ('asset_dir', 'filters', 'i18n_dir', 'out_dir',
+    # Check files and directory existence.
+    if not settings['src_dir']:
+        sys.exit('The "src_dir" option cannot be empty.')
+    for option in ('asset_dir', 'filters', 'locale_dir',
                    'src_dir', 'template_dir'):
         path = settings[option]
         if path is not None:
             exit_if_file_absent(path)
+
+    # Create output directory if it does not exist already.
+    if not os.path.exists(settings['out_dir']):
+        os.mkdir(settings['out_dir'])
     return settings
 
 
@@ -136,7 +151,7 @@ def get_logger(level, filename):
     else:
         # Error log file must be absolute, we do not want to guess.
         if os.path.abspath(filename) != filename:
-            sys.exit('The path to the error file must be absolute.')
+            sys.exit('The path to the log file must be absolute.')
         handler = logging.FileHandler(filename)
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)

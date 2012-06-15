@@ -1,0 +1,7 @@
+<p i18n:domain="test" i18n:translate="">
+  My name is <span tal:replace="md['name']" i18n:name="name"></span>.
+</p>
+
+<div class="content" tal:content="structure body"/>
+
+<p>A footer</p>

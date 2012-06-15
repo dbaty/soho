@@ -45,7 +45,7 @@ setup(name='Soho',
       install_requires=requires,
       extras_require=extras_require,
       tests_require=tests_require,
-      test_suite='soho.tests',
+      test_suite='tests',
       entry_points='''
       [console_scripts]
       soho-build = soho.cli:main
