@@ -17,9 +17,9 @@ class Builder(object):
     """Driver class."""
 
     def __init__(self, asset_dir, assets_only, base_url, do_nothing,
-                 filters, force, hide_index_html, locale_dir,
-                 ignore_files, logger, out_dir, src_dir, sitemap,
-                 template, template_dir):
+                 force, hide_index_html, locale_dir, ignore_files,
+                 logger, out_dir, src_dir, sitemap, template,
+                 template_dir):
         """Initialize the builder.
 
         Arguments must be passed by name only. Their order may change
@@ -42,9 +42,6 @@ class Builder(object):
             wheelbarrows (the latter are evil, anyway: you should not
             create wheelbarrows unless you really know what you are
             doing).
-
-        ``filters``
-            path to the user defined filters (Python) module.
 
         ``force``
             if set, force the generation of HTML files, even if they
@@ -91,16 +88,6 @@ class Builder(object):
             self.load_translations(locale_dir)
         self._template = template
         self._out_dir = out_dir
-
-        # FIXME: register filters
-        #if filters is not None:
-        #    module = load_source('user_defined_filters',
-        #                         filters)
-        #    self._pre_filters = getattr(module, 'pre_filters', ())
-        #    self._post_filters = getattr(module, 'post_filters', ())
-        #else:
-        #    self._pre_filters = ()
-        #    self._post_filters = ()
         self._do_nothing = do_nothing
         self._force = force
         self._assets_only = assets_only
@@ -215,9 +202,6 @@ class Builder(object):
             return 1
         self.logger.info('Processing "%s" (writing in "%s").',
                          in_path, out_path)
-        # FIXME: enable pre filters
-        #for filter in self._pre_filters:
-        #    source = filter(source)
         metadata = deepcopy(dir_metadata)
         file_metadata, body = generator.generate(in_path)
         metadata.update(file_metadata)
@@ -228,9 +212,6 @@ class Builder(object):
                     'md': metadata,
                     'assets': '/assets'}
         html_output = renderer.render(**bindings)
-        # FIXME: enable post filters
-        #for filter in self._post_filters:
-        #    content = filter(html_output)
         if not self._do_nothing:
             with open(out_path, 'wb+') as out:
                 out.write(html_output.encode(ENCODING))

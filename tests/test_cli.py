@@ -25,7 +25,6 @@ class TestGetSettings(TestCase):
                           'assets_only': False,
                           'base_url': 'http://exemple.com',
                           'do_nothing': False,
-                          'filters': None,
                           'force': False,
                           'hide_index_html': True,
                           'ignore_files': ignore_files,

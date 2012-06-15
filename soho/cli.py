@@ -70,7 +70,6 @@ def get_settings(options):
                    'assets_only',
                    'base_url',
                    'do_nothing',
-                   'filters',
                    'force',
                    'hide_index_html',
                    'locale_dir',
@@ -112,8 +111,7 @@ def get_settings(options):
     # Check files and directory existence.
     if not settings['src_dir']:
         sys.exit('The "src_dir" option cannot be empty.')
-    for option in ('asset_dir', 'filters', 'locale_dir',
-                   'src_dir', 'template_dir'):
+    for option in ('asset_dir', 'locale_dir', 'src_dir', 'template_dir'):
         path = settings[option]
         if path is not None:
             exit_if_file_absent(path)

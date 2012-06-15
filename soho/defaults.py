@@ -3,7 +3,6 @@ DEFAULT_ASSETS_ONLY = False
 DEFAULT_BASE_URL = 'http://exemple.com/soho/default-base-url'
 DEFAULT_CONFIG_FILE = 'sohoconf.py'
 DEFAULT_DO_NOTHING = False
-DEFAULT_FILTERS = None
 DEFAULT_FORCE = False
 DEFAULT_HIDE_INDEX_HTML = True
 DEFAULT_IGNORE_FILES = ('.*\.DS_Store$', '.*~$')
