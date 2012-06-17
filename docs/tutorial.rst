@@ -4,8 +4,6 @@
 Tutorial
 ========
 
-.. FIXME: :emphasize-lines: seems to be ignored
-
 The goal of this tutorial is to show most features of Soho, step by
 step. We will first start with the basics, add assets, then show how
 to use metadata and pass bindings to the templates, and conclude with

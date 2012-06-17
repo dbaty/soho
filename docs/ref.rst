@@ -129,7 +129,7 @@ Python module that may define the following variable:
 .. note::
 
    All directories (except ``www_dir``) are expected to exist. If you
-   do not need the feature, you must set the setting to ``None``.
+   do not need the feature, you must set the path to ``None``.
 
    Also, each directory may be an absolute path or a relative path. If
    it is a relative path and starts with ``./`` (more precisely a dot

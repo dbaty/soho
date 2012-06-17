@@ -138,6 +138,12 @@ translation files;</li>
 <li>Lingua, which provides message extractors. In other words, Lingua
 detects which messages have to be translated.</li>
 </ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">As of this writing, Babel and Lingua support of Python 3 is
+unknown. See the <a class="reference external" href="#note-about-babel-and-lingua">note below</a> for
+an alternative.</p>
+</div>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>easy_install Babel lingua
 </pre></div>
 </div>
@@ -189,8 +195,8 @@ stored. We can do so in a <tt class="docutils literal"><span class="pre">setup.c
 <p>This file tells Babel about the i18n domain that we want to handle
 (<tt class="docutils literal"><span class="pre">tutorial</span></tt>), the path where files will be created (a <tt class="docutils literal"><span class="pre">locale</span></tt>
 directory, which is the standard name and the default in Soho) and a
-few other settings that you may read about in <a class="reference external" href="http://FIXME">Babel documentation</a>. We will create this directory and get ready to
-generate our translation files:</p>
+few other settings that you may read about in <a class="reference external" href="http://babel.edgewall.org/wiki/Documentation/index.html">Babel documentation</a>. We will
+create this directory and get ready to generate our translation files:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$SITE_ROOT</span>
 <span class="nv">$ </span>mkdir locale
 <span class="nv">$ </span>ls
@@ -280,7 +286,7 @@ commands:</p>
 you will have to run the <tt class="docutils literal"><span class="pre">update_catalog</span></tt>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">As indicated above, you do not have to use Babel and Lingua to
+<p class="last" id="note-about-babel-and-lingua">As indicated above, you do not have to use Babel and Lingua to
 generate the translation files. You may very well create the
 <tt class="docutils literal"><span class="pre">.po</span></tt> by hand and generate the compiled <tt class="docutils literal"><span class="pre">.mo</span></tt> file with
 <tt class="docutils literal"><span class="pre">msgfmt</span></tt>. However, having tools (be it Babel and Lingua or

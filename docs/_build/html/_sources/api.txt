@@ -2,57 +2,32 @@
 API Documentation
 =================
 
-FIXME: to be completed
-
 
 :mod:`soho.builder` module
 ==========================
 
 .. automodule:: soho.builder
-   :members:
 
-:mod:`soho.i18n` module
-=======================
-
-.. automodule:: soho.i18n
-   :members:
-
-
-:mod:`soho.utils` module
-========================
-
-.. automodule:: soho.utils
-   :members:
+   .. autoclass:: Builder
 
 
 :mod:`soho.generators` package
 ==============================
 
-.. automodule:: soho.generators.__init__
-   :members:
+.. automodule:: soho.generators
+
+   .. autoclass:: BaseGenerator
+      :members:
+
+   .. autofunction:: register_generator
 
 
-:mod:`soho.generators.html` module
-----------------------------------
+:mod:`soho.renderers` package
+=============================
 
-.. automodule:: soho.generators.html
-   :members:
+.. automodule:: soho.renderers
 
-:mod:`soho.generators.rst` module
----------------------------------
+   .. autoclass:: BaseRenderer
+      :members:
 
-.. automodule:: soho.generators.rst
-   :members:
-
-
-:mod:`soho.renderers`
-=====================
-
-.. automodule:: soho.renderers.__init__
-   :members:
-
-:mod:`soho.renderers.zpt` module
---------------------------------
-
-.. automodule:: soho.renderers.zpt
-   :members:
+   .. autofunction:: register_renderer

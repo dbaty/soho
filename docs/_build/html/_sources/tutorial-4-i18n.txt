@@ -76,6 +76,12 @@ enough), but we will use Python tools to help us instead:
 - Lingua, which provides message extractors. In other words, Lingua
   detects which messages have to be translated.
 
+.. warning::
+
+   As of this writing, Babel and Lingua support of Python 3 is
+   unknown. See the `note below <#note-about-babel-and-lingua>`_ for
+   an alternative.
+
 .. code-block:: bash
 
    $ easy_install Babel lingua
@@ -105,8 +111,8 @@ This file tells Babel about the i18n domain that we want to handle
 (``tutorial``), the path where files will be created (a ``locale``
 directory, which is the standard name and the default in Soho) and a
 few other settings that you may read about in `Babel documentation
-<http://FIXME>`_. We will create this directory and get ready to
-generate our translation files:
+<http://babel.edgewall.org/wiki/Documentation/index.html>`_. We will
+create this directory and get ready to generate our translation files:
 
 .. code-block:: bash
 
@@ -191,6 +197,8 @@ Note that you need to run the ``init_catalog`` only once. Afterwards,
 you will have to run the ``update_catalog``.
 
 .. note::
+
+   .. _note-about-babel-and-lingua:
 
    As indicated above, you do not have to use Babel and Lingua to
    generate the translation files. You may very well create the

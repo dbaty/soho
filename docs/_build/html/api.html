@@ -52,147 +52,130 @@
             
   <div class="section" id="api-documentation">
 <h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
-<p>FIXME: to be completed</p>
 <div class="section" id="module-soho.builder">
 <span id="soho-builder-module"></span><h2><a class="reference internal" href="#module-soho.builder" title="soho.builder"><tt class="xref py py-mod docutils literal"><span class="pre">soho.builder</span></tt></a> module<a class="headerlink" href="#module-soho.builder" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="soho.builder.Builder">
 <em class="property">class </em><tt class="descclassname">soho.builder.</tt><tt class="descname">Builder</tt><big>(</big><em>asset_dir</em>, <em>assets_only</em>, <em>base_url</em>, <em>do_nothing</em>, <em>force</em>, <em>hide_index_html</em>, <em>locale_dir</em>, <em>ignore_files</em>, <em>logger</em>, <em>out_dir</em>, <em>src_dir</em>, <em>sitemap</em>, <em>template</em>, <em>template_dir</em><big>)</big><a class="headerlink" href="#soho.builder.Builder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Driver class.</p>
-<dl class="method">
-<dt id="soho.builder.Builder.translate">
-<tt class="descname">translate</tt><big>(</big><em>msgid</em>, <em>domain=None</em>, <em>mapping=None</em>, <em>default=None</em>, <em>context=None</em><big>)</big><a class="headerlink" href="#soho.builder.Builder.translate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Translate the given <tt class="docutils literal"><span class="pre">msgid</span></tt>.</p>
-<p><tt class="docutils literal"><span class="pre">None</span></tt> default values seem to be required by Chameleon,
-which may call &#8216;translate(msgid)&#8217; even when translation is not
-requested by the template.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-soho.i18n">
-<span id="soho-i18n-module"></span><h2><a class="reference internal" href="#module-soho.i18n" title="soho.i18n"><tt class="xref py py-mod docutils literal"><span class="pre">soho.i18n</span></tt></a> module<a class="headerlink" href="#module-soho.i18n" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="soho.i18n.TranslatorWrapper">
-<em class="property">class </em><tt class="descclassname">soho.i18n.</tt><tt class="descname">TranslatorWrapper</tt><big>(</big><em>locale_dir</em><big>)</big><a class="headerlink" href="#soho.i18n.TranslatorWrapper" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper that hold instances of <tt class="docutils literal"><span class="pre">gettext.GNUTranslations</span></tt>
-and take care of choosing the right one depending on the domain
-and the locale that are requested at translation time.</p>
-<dl class="method">
-<dt id="soho.i18n.TranslatorWrapper.load_translations">
-<tt class="descname">load_translations</tt><big>(</big><em>locale_dir</em><big>)</big><a class="headerlink" href="#soho.i18n.TranslatorWrapper.load_translations" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load translations from files located in <tt class="docutils literal"><span class="pre">locale_dir</span></tt>.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="soho.i18n.TranslatorWrapper.translate">
-<tt class="descname">translate</tt><big>(</big><em>locale</em>, <em>msgid</em>, <em>domain</em>, <em>mapping</em><big>)</big><a class="headerlink" href="#soho.i18n.TranslatorWrapper.translate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Translate <tt class="docutils literal"><span class="pre">msgid</span></tt> in the requested <tt class="docutils literal"><span class="pre">locale</span></tt>.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="soho.i18n.interpolate">
-<tt class="descclassname">soho.i18n.</tt><tt class="descname">interpolate</tt><big>(</big><em>s</em>, <em>mapping</em><big>)</big><a class="headerlink" href="#soho.i18n.interpolate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Interpolate params in the given string <tt class="docutils literal"><span class="pre">s</span></tt> with values
-provided in <tt class="docutils literal"><span class="pre">mapping</span></tt> (if any).</p>
-</dd></dl>
-
-</div>
-<div class="section" id="module-soho.utils">
-<span id="soho-utils-module"></span><h2><a class="reference internal" href="#module-soho.utils" title="soho.utils"><tt class="xref py py-mod docutils literal"><span class="pre">soho.utils</span></tt></a> module<a class="headerlink" href="#module-soho.utils" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="soho.utils.Sitemap">
-<em class="property">class </em><tt class="descclassname">soho.utils.</tt><tt class="descname">Sitemap</tt><a class="headerlink" href="#soho.utils.Sitemap" title="Permalink to this definition">¶</a></dt>
-<dd><p>A class that can generate Sitemap files.</p>
-<p>See <a class="reference external" href="http://www.sitemaps.org/">http://www.sitemaps.org/</a> for further details about the
-format of the file.</p>
-<dl class="method">
-<dt id="soho.utils.Sitemap.add">
-<tt class="descname">add</tt><big>(</big><em>path</em>, <em>url</em>, <em>change_freq</em>, <em>priority</em><big>)</big><a class="headerlink" href="#soho.utils.Sitemap.add" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a URL to the Sitemap.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="soho.utils.Sitemap.write">
-<tt class="descname">write</tt><big>(</big><em>out</em><big>)</big><a class="headerlink" href="#soho.utils.Sitemap.write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write the Sitemap to the given <tt class="docutils literal"><span class="pre">out</span></tt> stream.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="soho.utils.hide_index_html_from">
-<tt class="descclassname">soho.utils.</tt><tt class="descname">hide_index_html_from</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#soho.utils.hide_index_html_from" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove <tt class="docutils literal"><span class="pre">index.html</span></tt> suffix as well as trailing slashes (if
-any).</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="soho.utils.read_dir_metadata">
-<tt class="descclassname">soho.utils.</tt><tt class="descname">read_dir_metadata</tt><big>(</big><em>dir_path</em><big>)</big><a class="headerlink" href="#soho.utils.read_dir_metadata" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return metadata associated to the given directory (if any).</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="soho.utils.read_file_metadata">
-<tt class="descclassname">soho.utils.</tt><tt class="descname">read_file_metadata</tt><big>(</big><em>file_path</em><big>)</big><a class="headerlink" href="#soho.utils.read_file_metadata" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return metadata associated to the given file (if any).</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="soho.utils.register_plugin">
-<tt class="descclassname">soho.utils.</tt><tt class="descname">register_plugin</tt><big>(</big><em>registry</em>, <em>spec</em>, <em>*keys</em><big>)</big><a class="headerlink" href="#soho.utils.register_plugin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register a plugin.</p>
+<dd><p>Initialize the builder.</p>
+<p>Arguments must be passed by name only. Their order may change
+in the future.</p>
 <dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">registry</span></tt></dt>
-<dd>should be a dict-like object.</dd>
-<dt><tt class="docutils literal"><span class="pre">spec</span></tt></dt>
-<dd>the full path to a class, e.g.
-<tt class="docutils literal"><span class="pre">'soho.renderers.zpt.ZPTRenderer'</span></tt>.</dd>
-<dt><tt class="docutils literal"><span class="pre">keys</span></tt></dt>
-<dd>one or more keys under which the plugin will be registered. At
-least one key must be provided.</dd>
+<dt><tt class="docutils literal"><span class="pre">asset_dir</span></tt></dt>
+<dd>directory where assets (images, stylesheets, etc.) live
+(if any).</dd>
+<dt><tt class="docutils literal"><span class="pre">assets_only</span></tt></dt>
+<dd>Process only assets. Useful if the only change is on the
+CSS, for example.</dd>
+<dt><tt class="docutils literal"><span class="pre">base_url</span></tt></dt>
+<dd>Base URL of the web site. This is used only to generate
+the Sitemap.</dd>
+<dt><tt class="docutils literal"><span class="pre">do_nothing</span></tt></dt>
+<dd>if set, nothing is created: no directory, no files and no
+wheelbarrows (the latter are evil, anyway: you should not
+create wheelbarrows unless you really know what you are
+doing).</dd>
+<dt><tt class="docutils literal"><span class="pre">force</span></tt></dt>
+<dd>if set, force the generation of HTML files, even if they
+have already been generated and are up to date.</dd>
+<dt><tt class="docutils literal"><span class="pre">hide_index_html</span></tt></dt>
+<dd><p class="first">if set, <tt class="docutils literal"><span class="pre">/index.html</span></tt> suffixes are removed from:</p>
+<ul class="last simple">
+<li>the <tt class="docutils literal"><span class="pre">path</span></tt> attribute that is automatically added in the
+<tt class="docutils literal"><span class="pre">md</span></tt> binding passed to the template;</li>
+<li>URLs in the Sitemap (if it is generated).</li>
+</ul>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">ignore_files</span></tt></dt>
+<dd>a (possibly empty) list of regular expressions. If the
+path of a file matches one of these expressions, it will
+not be processed.</dd>
+<dt><tt class="docutils literal"><span class="pre">locale_dir</span></tt></dt>
+<dd>directory where translations are stored (usually a
+directory called <tt class="docutils literal"><span class="pre">locale</span></tt>).</dd>
+<dt><tt class="docutils literal"><span class="pre">logger</span></tt></dt>
+<dd>the logger to be used. Duh.</dd>
+<dt><tt class="docutils literal"><span class="pre">out_dir</span></tt></dt>
+<dd>directory where HTML files will be created.</dd>
+<dt><tt class="docutils literal"><span class="pre">src_dir</span></tt></dt>
+<dd>directory where source files live.</dd>
+<dt><tt class="docutils literal"><span class="pre">sitemap</span></tt></dt>
+<dd>name of the Sitemap file (usually <tt class="docutils literal"><span class="pre">sitemap.xml</span></tt>) or
+<tt class="docutils literal"><span class="pre">None</span></tt> if no such file should be generated.</dd>
+<dt><tt class="docutils literal"><span class="pre">template_dir</span></tt></dt>
+<dd>directory where templates live (if any).</dd>
 </dl>
 </dd></dl>
 
 </div>
-<div class="section" id="module-soho.generators.__init__">
-<span id="soho-generators-package"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">soho.generators</span></tt> package<a class="headerlink" href="#module-soho.generators.__init__" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="soho.generators.__init__.get_generator">
-<tt class="descclassname">soho.generators.__init__.</tt><tt class="descname">get_generator</tt><big>(</big><em>path</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#soho.generators.__init__.get_generator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return an instance of the generator for the given file, or
-<tt class="docutils literal"><span class="pre">None</span></tt> if none could be found.</p>
+<div class="section" id="module-soho.generators">
+<span id="soho-generators-package"></span><h2><a class="reference internal" href="#module-soho.generators" title="soho.generators"><tt class="xref py py-mod docutils literal"><span class="pre">soho.generators</span></tt></a> package<a class="headerlink" href="#module-soho.generators" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="soho.generators.BaseGenerator">
+<em class="property">class </em><tt class="descclassname">soho.generators.</tt><tt class="descname">BaseGenerator</tt><a class="headerlink" href="#soho.generators.BaseGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class that any generator must implement.</p>
+<dl class="method">
+<dt id="soho.generators.BaseGenerator.generate">
+<tt class="descname">generate</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#soho.generators.BaseGenerator.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple that consists of the metadata and the HTML
+fragment generated from the file at the given <tt class="docutils literal"><span class="pre">path</span></tt>.</p>
 </dd></dl>
 
-<div class="section" id="module-soho.generators.html">
-<span id="soho-generators-html-module"></span><h3><a class="reference internal" href="#module-soho.generators.html" title="soho.generators.html"><tt class="xref py py-mod docutils literal"><span class="pre">soho.generators.html</span></tt></a> module<a class="headerlink" href="#module-soho.generators.html" title="Permalink to this headline">¶</a></h3>
-<p>Define the <tt class="docutils literal"><span class="pre">HTMLGenerator</span></tt>, which takes HTML as input and return
-the same HTML as output.</p>
-</div>
-<div class="section" id="module-soho.generators.rst">
-<span id="soho-generators-rst-module"></span><h3><a class="reference internal" href="#module-soho.generators.rst" title="soho.generators.rst"><tt class="xref py py-mod docutils literal"><span class="pre">soho.generators.rst</span></tt></a> module<a class="headerlink" href="#module-soho.generators.rst" title="Permalink to this headline">¶</a></h3>
-<p>Define the <tt class="docutils literal"><span class="pre">ReSTGenerator</span></tt>, which takes reStructuredText as input
-and return HTML as output.</p>
-</div>
-</div>
-<div class="section" id="module-soho.renderers.__init__">
-<span id="soho-renderers"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">soho.renderers</span></tt><a class="headerlink" href="#module-soho.renderers.__init__" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="soho.renderers.__init__.get_renderer">
-<tt class="descclassname">soho.renderers.__init__.</tt><tt class="descname">get_renderer</tt><big>(</big><em>path</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#soho.renderers.__init__.get_renderer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a renderer for the given template, or <tt class="docutils literal"><span class="pre">None</span></tt> if none
-could be found.</p>
 </dd></dl>
 
-<div class="section" id="module-soho.renderers.zpt">
-<span id="soho-renderers-zpt-module"></span><h3><a class="reference internal" href="#module-soho.renderers.zpt" title="soho.renderers.zpt"><tt class="xref py py-mod docutils literal"><span class="pre">soho.renderers.zpt</span></tt></a> module<a class="headerlink" href="#module-soho.renderers.zpt" title="Permalink to this headline">¶</a></h3>
-<p>Define the <tt class="docutils literal"><span class="pre">ZPTRenderer</span></tt> that can render ZPT (Zope Page
-Templates).</p>
+<dl class="function">
+<dt id="soho.generators.register_generator">
+<tt class="descclassname">soho.generators.</tt><tt class="descname">register_generator</tt><big>(</big><em>spec</em>, <em>*ext</em><big>)</big><a class="headerlink" href="#soho.generators.register_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a generator.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">spec</span></tt></dt>
+<dd>a string that represents the full path to a class, for example
+<tt class="docutils literal"><span class="pre">'soho.generators.rst.RSTGenerator'</span></tt>. The class must
+implement the same interface as
+<a class="reference internal" href="#soho.generators.BaseGenerator" title="soho.generators.BaseGenerator"><tt class="xref py py-class docutils literal"><span class="pre">soho.generators.BaseGenerator</span></tt></a>.</dd>
+<dt><tt class="docutils literal"><span class="pre">ext</span></tt></dt>
+<dd>one or more file extensions to which the plugin will be
+associated. At least one file extension must be provided. File
+extensions should not contain the dot, for example <tt class="docutils literal"><span class="pre">'html'</span></tt>,
+not <tt class="docutils literal"><span class="pre">'.html'</span></tt>.</dd>
+</dl>
+</dd></dl>
+
 </div>
+<div class="section" id="module-soho.renderers">
+<span id="soho-renderers-package"></span><h2><a class="reference internal" href="#module-soho.renderers" title="soho.renderers"><tt class="xref py py-mod docutils literal"><span class="pre">soho.renderers</span></tt></a> package<a class="headerlink" href="#module-soho.renderers" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="soho.renderers.BaseRenderer">
+<em class="property">class </em><tt class="descclassname">soho.renderers.</tt><tt class="descname">BaseRenderer</tt><big>(</big><em>template_path</em><big>)</big><a class="headerlink" href="#soho.renderers.BaseRenderer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class that any renderer must implement.</p>
+<p>There is only one renderer for now, so the API is subject to
+change (as soon as a second renderer is implemented).</p>
+<dl class="method">
+<dt id="soho.renderers.BaseRenderer.render">
+<tt class="descname">render</tt><big>(</big><em>**bindings</em><big>)</big><a class="headerlink" href="#soho.renderers.BaseRenderer.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render the template with the given <tt class="docutils literal"><span class="pre">bindings</span></tt>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="soho.renderers.register_renderer">
+<tt class="descclassname">soho.renderers.</tt><tt class="descname">register_renderer</tt><big>(</big><em>spec</em>, <em>*ext</em><big>)</big><a class="headerlink" href="#soho.renderers.register_renderer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a renderer.</p>
+<p><tt class="docutils literal"><span class="pre">spec</span></tt></p>
+<blockquote>
+<div>a string that represents the full path to a class, for example
+<tt class="docutils literal"><span class="pre">'soho.renderers.zpt.ZPTRenderer'</span></tt>. The class must implement
+the same interface as <a class="reference internal" href="#soho.renderers.BaseRenderer" title="soho.renderers.BaseRenderer"><tt class="xref py py-class docutils literal"><span class="pre">soho.renderers.BaseRenderer</span></tt></a>.</div></blockquote>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">ext</span></tt></dt>
+<dd>one or more file extensions to which the plugin will be
+associated. At least one file extension must be provided. File
+extensions should not contain the dot, for example <tt class="docutils literal"><span class="pre">'html'</span></tt>,
+not <tt class="docutils literal"><span class="pre">'.html'</span></tt>.</dd>
+</dl>
+</dd></dl>
+
 </div>
 </div>
 
@@ -206,17 +189,8 @@ Templates).</p>
   <ul>
 <li><a class="reference internal" href="#">API Documentation</a><ul>
 <li><a class="reference internal" href="#module-soho.builder"><tt class="docutils literal"><span class="pre">soho.builder</span></tt> module</a></li>
-<li><a class="reference internal" href="#module-soho.i18n"><tt class="docutils literal"><span class="pre">soho.i18n</span></tt> module</a></li>
-<li><a class="reference internal" href="#module-soho.utils"><tt class="docutils literal"><span class="pre">soho.utils</span></tt> module</a></li>
-<li><a class="reference internal" href="#module-soho.generators.__init__"><tt class="docutils literal"><span class="pre">soho.generators</span></tt> package</a><ul>
-<li><a class="reference internal" href="#module-soho.generators.html"><tt class="docutils literal"><span class="pre">soho.generators.html</span></tt> module</a></li>
-<li><a class="reference internal" href="#module-soho.generators.rst"><tt class="docutils literal"><span class="pre">soho.generators.rst</span></tt> module</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-soho.renderers.__init__"><tt class="docutils literal"><span class="pre">soho.renderers</span></tt></a><ul>
-<li><a class="reference internal" href="#module-soho.renderers.zpt"><tt class="docutils literal"><span class="pre">soho.renderers.zpt</span></tt> module</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#module-soho.generators"><tt class="docutils literal"><span class="pre">soho.generators</span></tt> package</a></li>
+<li><a class="reference internal" href="#module-soho.renderers"><tt class="docutils literal"><span class="pre">soho.renderers</span></tt> package</a></li>
 </ul>
 </li>
 </ul>
