@@ -7,6 +7,7 @@ import sys
 from soho import __version__ as VERSION
 from soho import defaults
 from soho.builder import Builder
+from soho.config import ALL_SETTINGS
 from soho.config import PATH_SETTINGS
 from soho.config import REGEXP_SETTINGS
 
@@ -66,21 +67,7 @@ def get_settings(options):
 
     # Merge settings from the command-line and the configuration file,
     # and add default settings if needed.
-    for option in ('asset_dir',
-                   'assets_only',
-                   'base_url',
-                   'do_nothing',
-                   'force',
-                   'hide_index_html',
-                   'locale_dir',
-                   'ignore_files',
-                   'logger_level',
-                   'logger_path',
-                   'out_dir',
-                   'src_dir',
-                   'sitemap',
-                   'template',
-                   'template_dir'):
+    for option in ALL_SETTINGS:
         value = getattr(options, option, None)
         if value is not None:
             # Use value provided via the command-line
@@ -119,6 +106,13 @@ def get_settings(options):
     # Create output directory if it does not exist already.
     if not settings['do_nothing'] and not os.path.exists(settings['out_dir']):
         os.mkdir(settings['out_dir'])
+
+    # We are going to pass the 'settings' dictionary as is to the
+    # Builder construtor. It must therefore not contain any key that
+    # is not accepted as an argument to the constructor.
+    for key in list(settings.keys()):
+        if key not in ALL_SETTINGS:
+            del settings[key]
     return settings
 
 

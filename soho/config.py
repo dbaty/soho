@@ -1,6 +1,21 @@
 ENCODING = 'utf-8'
 METADATA_FILE_SUFFIX = '.meta.py'
 
+ALL_SETTINGS = ('asset_dir',
+                'assets_only',
+                'base_url',
+                'do_nothing',
+                'force',
+                'hide_index_html',
+                'locale_dir',
+                'ignore_files',
+                'logger_level',
+                'logger_path',
+                'out_dir',
+                'src_dir',
+                'sitemap',
+                'template',
+                'template_dir')
 BOOLEAN_SETTINGS = ('assets_only',
                     'do_nothing',
                     'force',

@@ -16,7 +16,6 @@ class TestGetSettings(TestCase):
         config_file = os.path.join(config_dir, 'sohoconf.py')
         options = make_options(config_file=config_file)
         settings = self._call_fut(options)
-        settings.pop('logger')  # we don't want to test that
         ignore_files = ('.*\.DS_Store$', '.*~$', '.*ignored.txt$')
         ignore_files = [re.compile(exp) for exp in ignore_files]
         path = lambda p: os.path.join(config_dir, p)
