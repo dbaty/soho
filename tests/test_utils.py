@@ -17,6 +17,12 @@ class TestRegisterPlugin(TestCase):
         self._call_fut(registry, 'soho.renderers.zpt.ZPTRenderer', 'zpt')
         self.assertEqual(registry, {'zpt': ZPTRenderer})
 
+    def test_no_keys(self):
+        registry = {}
+        self.assertRaises(ValueError,
+                          self._call_fut,
+                          registry, 'soho.renderers.zpt.ZPTRenderer')
+
     def test_multiple_keys(self):
         from soho.renderers.zpt import ZPTRenderer
         registry = {}

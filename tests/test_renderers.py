@@ -24,3 +24,17 @@ class TestGetGenerator(TestCase):
         expected = [('file.ext', 'foo', ), {'bar': 'bar'}]
         self.assertIsInstance(got, DummyRenderer)
         self.assertEqual(got.log, expected)
+
+
+class TestRegisterGenerator(TestCase):
+
+    def _call_fut(self, spec, *exts):
+        from soho.renderers import register_renderer
+        return register_renderer(spec, *exts)
+
+    @mock.patch('soho.renderers.registry', new_callable=dict)
+    def test_basics(self, mock_registry):
+        from soho.renderers import registry
+        self._call_fut('unittest.TestCase', 'html', 'foo')
+        self.assertEqual(registry['html'], TestCase)
+        self.assertEqual(registry['foo'], TestCase)

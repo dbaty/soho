@@ -59,7 +59,10 @@ class RSTGenerator(BaseGenerator):
             parts = publish_parts(in_file.read(),
                                   writer=writer,
                                   settings_overrides=DOCUTILS_SETTINGS)
-        meta = self.read_metadata_from_file(path)
+        # Read metadata from a '.meta.py' file it one exists
+        meta = self._read_metadata_from_file(path)
+        # And update (or create) from metadata embedded in the source
+        # file itself.
         for value, key in META_REGEXP.findall(parts['meta']):
             meta[key] = value
         return meta, parts['body'].strip()
