@@ -18,14 +18,18 @@ class DummyLogger(object):
     debug = warning = info
 
 
-class BuilderFunctionalTest(TestCase):
+class BuilderFunctionalTest(object):
 
     def setUp(self):
         import os
         here = os.path.dirname(__file__)
-        self.test_site_dir = os.path.join(here, 'fixtures', self.test_site)
+        self.setUpTestDir(here)
         self.config_file = os.path.join(self.test_site_dir, 'sohoconf.py')
         self.expected_dir = os.path.join(self.test_site_dir, 'www')
+
+    def setUpTestDir(self, here):
+        import os
+        self.test_site_dir = os.path.join(here, 'fixtures', self.test_site)
 
     def _make_builder(self, options, **custom_settings):
         from soho.builder import Builder
@@ -41,11 +45,6 @@ class BuilderFunctionalTest(TestCase):
         self.assertEqual(diff.right_only, [])
         self.assertEqual(diff.diff_files, [])
 
-
-class TestSite1(BuilderFunctionalTest):
-
-    test_site = 'site1'
-
     def test_builder(self):
         from .base import make_options
         options = make_options(config_file=self.config_file)
@@ -53,6 +52,13 @@ class TestSite1(BuilderFunctionalTest):
             builder = self._make_builder(options=options, out_dir=out_dir)
             builder.build()
             self.assertBuilderOutput(out_dir, self.expected_dir)
+
+
+class TestSite1(BuilderFunctionalTest, TestCase):
+
+    test_site = 'site1'
+
+    # inherits 'test_builder()' from BuilderFunctionalTest
 
     def test_builder_dry_run(self):
         import os
@@ -75,14 +81,30 @@ class TestSite1(BuilderFunctionalTest):
             self.assertBuilderOutput(out_dir, self.expected_dir)
 
 
-class TestSite2(BuilderFunctionalTest):
-
+class TestSite2(BuilderFunctionalTest, TestCase):
     test_site = 'site2'
+    # inherits 'test_builder()' from BuilderFunctionalTest
 
-    def test_builder(self):
-        from .base import make_options
-        options = make_options(config_file=self.config_file)
-        with temp_folder() as out_dir:
-            builder = self._make_builder(options=options, out_dir=out_dir)
-            builder.build()
-            self.assertBuilderOutput(out_dir, self.expected_dir)
+
+class TutorialFunctionalTest(BuilderFunctionalTest):
+    # Our base class to test all parts of the tutorials.
+    def setUpTestDir(self, here):
+        import os
+        self.test_site_dir = os.path.join(
+            here, '..', 'docs', '_tutorial', self.test_site)
+
+
+class TestTutorialIntro(TutorialFunctionalTest, TestCase):
+    test_site = '1-intro'
+
+
+class TestTutorialAssets(TutorialFunctionalTest, TestCase):
+    test_site = '2-assets'
+
+
+class TestTutorialMetadata(TutorialFunctionalTest, TestCase):
+    test_site = '3-metadata'
+
+
+class TestTutorialI18n(TutorialFunctionalTest, TestCase):
+    test_site = '4-i18n'
