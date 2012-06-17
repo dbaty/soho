@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title tal:content="md['title']"/>
+  <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body i18n:domain="tutorial">
+<div class="content" tal:content="structure body"/>
+<div class="footer">
+  <a href="contact.html" i18n:translate="">Contact me!</a>
+</div>
+</body>
+</html>

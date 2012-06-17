@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API Documentation &mdash; Soho 0.8.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Soho 0.8.0 documentation" href="index.html" />
+    <link rel="prev" title="List of releases of Soho" href="changes.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="changes.html" title="List of releases of Soho"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Soho 0.8.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="api-documentation">
+<h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
+<p>FIXME: to be completed</p>
+<div class="section" id="module-soho.builder">
+<span id="soho-builder-module"></span><h2><a class="reference internal" href="#module-soho.builder" title="soho.builder"><tt class="xref py py-mod docutils literal"><span class="pre">soho.builder</span></tt></a> module<a class="headerlink" href="#module-soho.builder" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="soho.builder.Builder">
+<em class="property">class </em><tt class="descclassname">soho.builder.</tt><tt class="descname">Builder</tt><big>(</big><em>asset_dir</em>, <em>assets_only</em>, <em>base_url</em>, <em>do_nothing</em>, <em>force</em>, <em>hide_index_html</em>, <em>locale_dir</em>, <em>ignore_files</em>, <em>logger</em>, <em>out_dir</em>, <em>src_dir</em>, <em>sitemap</em>, <em>template</em>, <em>template_dir</em><big>)</big><a class="headerlink" href="#soho.builder.Builder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Driver class.</p>
+<dl class="method">
+<dt id="soho.builder.Builder.translate">
+<tt class="descname">translate</tt><big>(</big><em>msgid</em>, <em>domain=None</em>, <em>mapping=None</em>, <em>default=None</em>, <em>context=None</em><big>)</big><a class="headerlink" href="#soho.builder.Builder.translate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate the given <tt class="docutils literal"><span class="pre">msgid</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">None</span></tt> default values seem to be required by Chameleon,
+which may call &#8216;translate(msgid)&#8217; even when translation is not
+requested by the template.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-soho.i18n">
+<span id="soho-i18n-module"></span><h2><a class="reference internal" href="#module-soho.i18n" title="soho.i18n"><tt class="xref py py-mod docutils literal"><span class="pre">soho.i18n</span></tt></a> module<a class="headerlink" href="#module-soho.i18n" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="soho.i18n.TranslatorWrapper">
+<em class="property">class </em><tt class="descclassname">soho.i18n.</tt><tt class="descname">TranslatorWrapper</tt><big>(</big><em>locale_dir</em><big>)</big><a class="headerlink" href="#soho.i18n.TranslatorWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper that hold instances of <tt class="docutils literal"><span class="pre">gettext.GNUTranslations</span></tt>
+and take care of choosing the right one depending on the domain
+and the locale that are requested at translation time.</p>
+<dl class="method">
+<dt id="soho.i18n.TranslatorWrapper.load_translations">
+<tt class="descname">load_translations</tt><big>(</big><em>locale_dir</em><big>)</big><a class="headerlink" href="#soho.i18n.TranslatorWrapper.load_translations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load translations from files located in <tt class="docutils literal"><span class="pre">locale_dir</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="soho.i18n.TranslatorWrapper.translate">
+<tt class="descname">translate</tt><big>(</big><em>locale</em>, <em>msgid</em>, <em>domain</em>, <em>mapping</em><big>)</big><a class="headerlink" href="#soho.i18n.TranslatorWrapper.translate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate <tt class="docutils literal"><span class="pre">msgid</span></tt> in the requested <tt class="docutils literal"><span class="pre">locale</span></tt>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="soho.i18n.interpolate">
+<tt class="descclassname">soho.i18n.</tt><tt class="descname">interpolate</tt><big>(</big><em>s</em>, <em>mapping</em><big>)</big><a class="headerlink" href="#soho.i18n.interpolate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolate params in the given string <tt class="docutils literal"><span class="pre">s</span></tt> with values
+provided in <tt class="docutils literal"><span class="pre">mapping</span></tt> (if any).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-soho.utils">
+<span id="soho-utils-module"></span><h2><a class="reference internal" href="#module-soho.utils" title="soho.utils"><tt class="xref py py-mod docutils literal"><span class="pre">soho.utils</span></tt></a> module<a class="headerlink" href="#module-soho.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="soho.utils.Sitemap">
+<em class="property">class </em><tt class="descclassname">soho.utils.</tt><tt class="descname">Sitemap</tt><a class="headerlink" href="#soho.utils.Sitemap" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class that can generate Sitemap files.</p>
+<p>See <a class="reference external" href="http://www.sitemaps.org/">http://www.sitemaps.org/</a> for further details about the
+format of the file.</p>
+<dl class="method">
+<dt id="soho.utils.Sitemap.add">
+<tt class="descname">add</tt><big>(</big><em>path</em>, <em>url</em>, <em>change_freq</em>, <em>priority</em><big>)</big><a class="headerlink" href="#soho.utils.Sitemap.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a URL to the Sitemap.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="soho.utils.Sitemap.write">
+<tt class="descname">write</tt><big>(</big><em>out</em><big>)</big><a class="headerlink" href="#soho.utils.Sitemap.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the Sitemap to the given <tt class="docutils literal"><span class="pre">out</span></tt> stream.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="soho.utils.hide_index_html_from">
+<tt class="descclassname">soho.utils.</tt><tt class="descname">hide_index_html_from</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#soho.utils.hide_index_html_from" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove <tt class="docutils literal"><span class="pre">index.html</span></tt> suffix as well as trailing slashes (if
+any).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="soho.utils.read_dir_metadata">
+<tt class="descclassname">soho.utils.</tt><tt class="descname">read_dir_metadata</tt><big>(</big><em>dir_path</em><big>)</big><a class="headerlink" href="#soho.utils.read_dir_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return metadata associated to the given directory (if any).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="soho.utils.read_file_metadata">
+<tt class="descclassname">soho.utils.</tt><tt class="descname">read_file_metadata</tt><big>(</big><em>file_path</em><big>)</big><a class="headerlink" href="#soho.utils.read_file_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return metadata associated to the given file (if any).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="soho.utils.register_plugin">
+<tt class="descclassname">soho.utils.</tt><tt class="descname">register_plugin</tt><big>(</big><em>registry</em>, <em>spec</em>, <em>*keys</em><big>)</big><a class="headerlink" href="#soho.utils.register_plugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a plugin.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">registry</span></tt></dt>
+<dd>should be a dict-like object.</dd>
+<dt><tt class="docutils literal"><span class="pre">spec</span></tt></dt>
+<dd>the full path to a class, e.g.
+<tt class="docutils literal"><span class="pre">'soho.renderers.zpt.ZPTRenderer'</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">keys</span></tt></dt>
+<dd>one or more keys under which the plugin will be registered. At
+least one key must be provided.</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-soho.generators.__init__">
+<span id="soho-generators-package"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">soho.generators</span></tt> package<a class="headerlink" href="#module-soho.generators.__init__" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="soho.generators.__init__.get_generator">
+<tt class="descclassname">soho.generators.__init__.</tt><tt class="descname">get_generator</tt><big>(</big><em>path</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#soho.generators.__init__.get_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an instance of the generator for the given file, or
+<tt class="docutils literal"><span class="pre">None</span></tt> if none could be found.</p>
+</dd></dl>
+
+<div class="section" id="module-soho.generators.html">
+<span id="soho-generators-html-module"></span><h3><a class="reference internal" href="#module-soho.generators.html" title="soho.generators.html"><tt class="xref py py-mod docutils literal"><span class="pre">soho.generators.html</span></tt></a> module<a class="headerlink" href="#module-soho.generators.html" title="Permalink to this headline">¶</a></h3>
+<p>Define the <tt class="docutils literal"><span class="pre">HTMLGenerator</span></tt>, which takes HTML as input and return
+the same HTML as output.</p>
+</div>
+<div class="section" id="module-soho.generators.rst">
+<span id="soho-generators-rst-module"></span><h3><a class="reference internal" href="#module-soho.generators.rst" title="soho.generators.rst"><tt class="xref py py-mod docutils literal"><span class="pre">soho.generators.rst</span></tt></a> module<a class="headerlink" href="#module-soho.generators.rst" title="Permalink to this headline">¶</a></h3>
+<p>Define the <tt class="docutils literal"><span class="pre">ReSTGenerator</span></tt>, which takes reStructuredText as input
+and return HTML as output.</p>
+</div>
+</div>
+<div class="section" id="module-soho.renderers.__init__">
+<span id="soho-renderers"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">soho.renderers</span></tt><a class="headerlink" href="#module-soho.renderers.__init__" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="soho.renderers.__init__.get_renderer">
+<tt class="descclassname">soho.renderers.__init__.</tt><tt class="descname">get_renderer</tt><big>(</big><em>path</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#soho.renderers.__init__.get_renderer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a renderer for the given template, or <tt class="docutils literal"><span class="pre">None</span></tt> if none
+could be found.</p>
+</dd></dl>
+
+<div class="section" id="module-soho.renderers.zpt">
+<span id="soho-renderers-zpt-module"></span><h3><a class="reference internal" href="#module-soho.renderers.zpt" title="soho.renderers.zpt"><tt class="xref py py-mod docutils literal"><span class="pre">soho.renderers.zpt</span></tt></a> module<a class="headerlink" href="#module-soho.renderers.zpt" title="Permalink to this headline">¶</a></h3>
+<p>Define the <tt class="docutils literal"><span class="pre">ZPTRenderer</span></tt> that can render ZPT (Zope Page
+Templates).</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">API Documentation</a><ul>
+<li><a class="reference internal" href="#module-soho.builder"><tt class="docutils literal"><span class="pre">soho.builder</span></tt> module</a></li>
+<li><a class="reference internal" href="#module-soho.i18n"><tt class="docutils literal"><span class="pre">soho.i18n</span></tt> module</a></li>
+<li><a class="reference internal" href="#module-soho.utils"><tt class="docutils literal"><span class="pre">soho.utils</span></tt> module</a></li>
+<li><a class="reference internal" href="#module-soho.generators.__init__"><tt class="docutils literal"><span class="pre">soho.generators</span></tt> package</a><ul>
+<li><a class="reference internal" href="#module-soho.generators.html"><tt class="docutils literal"><span class="pre">soho.generators.html</span></tt> module</a></li>
+<li><a class="reference internal" href="#module-soho.generators.rst"><tt class="docutils literal"><span class="pre">soho.generators.rst</span></tt> module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-soho.renderers.__init__"><tt class="docutils literal"><span class="pre">soho.renderers</span></tt></a><ul>
+<li><a class="reference internal" href="#module-soho.renderers.zpt"><tt class="docutils literal"><span class="pre">soho.renderers.zpt</span></tt> module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="changes.html"
+                        title="previous chapter">List of releases of Soho</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="changes.html" title="List of releases of Soho"
+             >previous</a> |</li>
+        <li><a href="index.html">Soho 0.8.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Damien Baty.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

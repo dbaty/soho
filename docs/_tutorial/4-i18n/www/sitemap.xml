@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://exemple.com/soho/default-base-url/en</loc>
+    <lastmod>2012-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>http://exemple.com/soho/default-base-url/en/contact.html</loc>
+    <lastmod>2012-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>http://exemple.com/soho/default-base-url/fr</loc>
+    <lastmod>2012-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>http://exemple.com/soho/default-base-url/fr/contact.html</loc>
+    <lastmod>2012-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

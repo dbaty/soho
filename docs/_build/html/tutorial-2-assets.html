@@ -1,0 +1,209 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Adding assets &mdash; Soho 0.8.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Soho 0.8.0 documentation" href="index.html" />
+    <link rel="up" title="Tutorial" href="tutorial.html" />
+    <link rel="next" title="Metadata and template bindings" href="tutorial-3-metadata.html" />
+    <link rel="prev" title="Setting up the structure and creating source files" href="tutorial-1-intro.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tutorial-3-metadata.html" title="Metadata and template bindings"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorial-1-intro.html" title="Setting up the structure and creating source files"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Soho 0.8.0 documentation</a> &raquo;</li>
+          <li><a href="tutorial.html" accesskey="U">Tutorial</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="adding-assets">
+<span id="tutorial-2-assets"></span><h1>Adding assets<a class="headerlink" href="#adding-assets" title="Permalink to this headline">¶</a></h1>
+<p>(This is a continuation of the first section of the tutorial entitled
+<a class="reference internal" href="tutorial-1-intro.html#tutorial-1-intro"><em>Setting up the structure and creating source files</em></a>.)</p>
+<p>Our web site is fine, although not visually appealing. As specialists
+put it, it is ugly. We are going to use a CSS file to &#8220;enhance the
+user experience&#8221; (which means that we are going to put some colors
+here and there). We could put this CSS file in the <tt class="docutils literal"><span class="pre">src</span></tt> directory,
+but it is not content per se. So we will put it in a special directory
+named <tt class="docutils literal"><span class="pre">assets</span></tt> or, rather, in a sub-directory called <tt class="docutils literal"><span class="pre">assets/css</span></tt>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$SITE_ROOT</span>
+<span class="nv">$ </span>mkdir -p assets/css
+<span class="nv">$ </span>ls
+assets    sohoconf.py    src    templates
+<span class="nv">$ </span><span class="nb">cd </span>assets/css
+</pre></div>
+</div>
+<p>Here is a very simple CSS file (which you may obviously improve):</p>
+<div class="highlight-css"><div class="highlight"><pre><span class="nc">.footer</span> <span class="p">{</span>
+    <span class="k">border-top</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
+    <span class="k">margin-top</span><span class="o">:</span> <span class="m">1em</span><span class="p">;</span>
+    <span class="k">padding-top</span><span class="o">:</span> <span class="m">1em</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We need to indicate to Soho that we have a special directory for
+assets. This is done in the <tt class="docutils literal"><span class="pre">sohoconf.py</span></tt> file with the
+<tt class="docutils literal"><span class="pre">asset_dir</span></tt> variable. You may remember that we set it to <tt class="docutils literal"><span class="pre">None</span></tt> in
+the first section of the tutorial to indicate that we did not have any
+asset directory. Here, we have different solutions to indicate the
+directory. This is the same mechanism for all path settings in
+Soho. We may indicate an absolute path like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">asset_dir</span> <span class="o">=</span> <span class="s">&#39;/path/to/your/site1/assets&#39;</span>
+</pre></div>
+</div>
+<p>A usually better solution is to indicate a path relative to the
+configuration file, like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">asset_dir</span> <span class="o">=</span> <span class="s">&#39;./assets&#39;</span>
+</pre></div>
+</div>
+<p>In fact, this is the default value for <tt class="docutils literal"><span class="pre">asset_dir</span></tt>, so you do not
+have to provide it. Hence, the complete configuration file could look
+like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">locale_dir</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">template</span> <span class="o">=</span> <span class="s">&#39;layout.pt&#39;</span>
+</pre></div>
+</div>
+<p>We also need to add a link to this stylesheet in the template
+(<tt class="docutils literal"><span class="pre">templates/layout.pt</span></tt>). Because we are good citizens, we will write
+a valid HTML document:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;title&gt;</span>My first web site with Soho<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;css/style.css&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span> <span class="na">tal:content=</span><span class="s">&quot;structure body&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;footer&quot;</span><span class="nt">&gt;</span>Generated by Soho.<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>We are ready to run Soho again:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$SITE_ROOT</span>
+<span class="nv">$ </span>ls
+assets    sohoconf.py    src    templates
+<span class="nv">$ </span>soho-build
+&lt;date&gt; - INFO - Copying assets...
+&lt;date&gt; - INFO - Copying <span class="s2">&quot;/path/to/site1/assets/css/style.css&quot;</span> to <span class="s2">&quot;/path/to/site1/www/css/style.css&quot;</span>
+&lt;date&gt; - INFO - Building HTML files...
+&lt;date&gt; - INFO - Done.
+</pre></div>
+</div>
+<p>As you can see, only assets have been processed. This is because we
+did not change any source file. However, we did change the template,
+so we should force the processing of source files. This can be done
+with the <tt class="docutils literal"><span class="pre">-f</span></tt> (or <tt class="docutils literal"><span class="pre">--force</span></tt>) command-line option, like this:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>soho-build -f
+&lt;date&gt; - INFO - Copying assets...
+&lt;date&gt; - INFO - Copying <span class="s2">&quot;/path/to/site1/assets/css/style.css&quot;</span> to <span class="s2">&quot;/path/to/site1/www/css/style.css&quot;</span>
+&lt;date&gt; - INFO - Building HTML files...
+&lt;date&gt; - INFO - Processing <span class="s2">&quot;/path/to/site1/src/index.rst&quot;</span> <span class="o">(</span>writing in <span class="s2">&quot;/path/to/site1/www/index.html&quot;</span><span class="o">)</span>.
+&lt;date&gt; - INFO - Processing <span class="s2">&quot;/path/to/site1/src/second.html&quot;</span> <span class="o">(</span>writing in <span class="s2">&quot;/path/to/site1/www/second.html&quot;</span><span class="o">)</span>.
+&lt;date&gt; - INFO - Generated Sitemap...
+&lt;date&gt; - INFO - Done.
+</pre></div>
+</div>
+<p>You may continue with the tutorial by following the
+<a class="reference internal" href="tutorial-3-metadata.html#tutorial-3-metadata"><em>Metadata and template bindings</em></a> section.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tutorial-1-intro.html"
+                        title="previous chapter">Setting up the structure and creating source files</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tutorial-3-metadata.html"
+                        title="next chapter">Metadata and template bindings</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/tutorial-2-assets.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tutorial-3-metadata.html" title="Metadata and template bindings"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tutorial-1-intro.html" title="Setting up the structure and creating source files"
+             >previous</a> |</li>
+        <li><a href="index.html">Soho 0.8.0 documentation</a> &raquo;</li>
+          <li><a href="tutorial.html" >Tutorial</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Damien Baty.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
