@@ -35,6 +35,7 @@ class BuilderFunctionalTest(object):
         from soho.builder import Builder
         from soho.cli import get_settings
         settings = get_settings(options)
+        self.assertIn('logger', settings.keys())
         settings.update(custom_settings)
         settings['logger'] = DummyLogger()
         return Builder(**settings)

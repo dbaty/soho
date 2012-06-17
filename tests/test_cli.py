@@ -8,6 +8,7 @@ class TestGetSettings(TestCase):
         return get_settings(options)
 
     def test_basics(self):
+        from logging import Logger
         import os
         import re
         from .base import make_options
@@ -19,7 +20,9 @@ class TestGetSettings(TestCase):
         ignore_files = ('.*\.DS_Store$', '.*~$', '.*ignored.txt$')
         ignore_files = [re.compile(exp) for exp in ignore_files]
         path = lambda p: os.path.join(config_dir, p)
-        self.assertDictEqual(settings,
+        logger = settings.pop('logger')
+        self.assertIsInstance(logger, Logger)
+        self.assertEqual(settings,
                          {'asset_dir': path('assets'),
                           'assets_only': False,
                           'base_url': 'http://exemple.com',

@@ -109,9 +109,15 @@ def get_settings(options):
 
     # We are going to pass the 'settings' dictionary as is to the
     # Builder construtor. It must therefore not contain any key that
-    # is not accepted as an argument to the constructor.
+    # is not accepted as an argument to the constructor. And then
+    # there is this logger dance which I am not particularly happy
+    # about, but I can live with this.
+    accepted_arguments = set(ALL_SETTINGS)
+    accepted_arguments.remove('logger_level')
+    accepted_arguments.remove('logger_path')
+    accepted_arguments.add('logger')
     for key in list(settings.keys()):
-        if key not in ALL_SETTINGS:
+        if key not in accepted_arguments:
             del settings[key]
     return settings
 
