@@ -40,7 +40,7 @@ def parse_args():  # pragma: no coverage
         action='store_true')
     add('-a', '--assets-only',
         help='Process only assets. Useful if only a CSS has changed, '
-             'for example',
+             'for example.',
         dest='assets_only',
         action='store_true')
     add('-d', '--dry-run', '--do-nothing',
@@ -75,7 +75,7 @@ def get_settings(options):
                    'locale_dir',
                    'ignore_files',
                    'logger_level',
-                   'logger_filename',
+                   'logger_path',
                    'out_dir',
                    'src_dir',
                    'sitemap',
@@ -106,7 +106,7 @@ def get_settings(options):
             settings[option] = [re.compile(exp) for exp in value]
 
     settings['logger'] = get_logger(settings.pop('logger_level'),
-                                    settings.pop('logger_filename'))
+                                    settings.pop('logger_path'))
 
     # Check files and directory existence.
     if not settings['src_dir']:
@@ -117,7 +117,7 @@ def get_settings(options):
             exit_if_file_absent(path)
 
     # Create output directory if it does not exist already.
-    if not os.path.exists(settings['out_dir']):
+    if not settings['do_nothing'] and not os.path.exists(settings['out_dir']):
         os.mkdir(settings['out_dir'])
     return settings
 
@@ -137,20 +137,20 @@ def exit_if_file_absent(filename):
         sys.exit(1)
 
 
-def get_logger(level, filename):
+def get_logger(level, path):
     logger = logging.getLogger('Soho')
     level = {'debug': logging.DEBUG,
              'info': logging.INFO,
              'warning': logging.WARNING,
              'error': logging.ERROR}[level.lower()]
     logger.setLevel(level)
-    if filename == '-':
+    if path == '-':
         handler = logging.StreamHandler()
     else:
         # Error log file must be absolute, we do not want to guess.
-        if os.path.abspath(filename) != filename:
+        if os.path.abspath(path) != path:
             sys.exit('The path to the log file must be absolute.')
-        handler = logging.FileHandler(filename)
+        handler = logging.FileHandler(path)
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
     logger.addHandler(handler)
