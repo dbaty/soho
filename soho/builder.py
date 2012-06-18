@@ -134,7 +134,7 @@ class Builder(object):
                              read_metadata=True,
                              inherited_metadata={})
         if self.sitemap and (self._changed or self._force):
-            self.logger.info('Generated Sitemap...')
+            self.logger.info('Generating Sitemap...')
             if not self._do_nothing:
                 with open(self._sitemap_path, 'w+') as out:
                     self.sitemap.write(out)
