@@ -35,7 +35,7 @@ distcheck: clean dist
 		tar xfz ./dist/$$name-$$ver.tar.gz -C $(tmp_src_dir) && \
 		cd $(tmp_src_dir)/$$name-$$ver && \
 		$(tmp_env_dir)/bin/python setup.py install && \
-		$(tmp_env_dir)/bin/nosetests
+		$(tmp_env_dir)/bin/python setup.py test
 
 .PHONY:	qa
 qa:
