@@ -62,48 +62,59 @@
 in the future.</p>
 <dl class="docutils">
 <dt><tt class="docutils literal"><span class="pre">asset_dir</span></tt></dt>
-<dd>directory where assets (images, stylesheets, etc.) live
-(if any).</dd>
+<dd>The directory where assets (images, stylesheets, etc.)
+live. Must be set to <tt class="docutils literal"><span class="pre">None</span></tt> if no such directory exists.</dd>
 <dt><tt class="docutils literal"><span class="pre">assets_only</span></tt></dt>
-<dd>Process only assets. Useful if the only change is on the
-CSS, for example.</dd>
+<dd>If set, process only assets, not source files. This may be
+useful if the only changes are on the CSS, for example.</dd>
 <dt><tt class="docutils literal"><span class="pre">base_url</span></tt></dt>
-<dd>Base URL of the web site. This is used only to generate
-the Sitemap.</dd>
+<dd>The base URL of the web site. This is used only to
+generate the URLs in the Sitemap. If you want the Sitemap
+to have valid URLs, this variable must be set.</dd>
 <dt><tt class="docutils literal"><span class="pre">do_nothing</span></tt></dt>
-<dd>if set, nothing is created: no directory, no files and no
-wheelbarrows (the latter are evil, anyway: you should not
-create wheelbarrows unless you really know what you are
-doing).</dd>
+<dd>If set, no directories nor files are created. This can be
+useful to test a new configuration. Note that you can
+combine this setting with <tt class="docutils literal"><span class="pre">force</span></tt> (see below): nothing
+will be created either.</dd>
 <dt><tt class="docutils literal"><span class="pre">force</span></tt></dt>
-<dd>if set, force the generation of HTML files, even if they
-have already been generated and are up to date.</dd>
+<dd>If set, force the generation of HTML files, even if they
+have already been generated and are up to date. Note that
+you can combine this setting with <tt class="docutils literal"><span class="pre">do_nothing</span></tt> (see
+above).</dd>
 <dt><tt class="docutils literal"><span class="pre">hide_index_html</span></tt></dt>
-<dd><p class="first">if set, <tt class="docutils literal"><span class="pre">/index.html</span></tt> suffixes are removed from:</p>
-<ul class="last simple">
-<li>the <tt class="docutils literal"><span class="pre">path</span></tt> attribute that is automatically added in the
+<dd><p class="first">If set, <tt class="docutils literal"><span class="pre">/index.html</span></tt> suffixes are removed from:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>the <tt class="docutils literal"><span class="pre">path</span></tt> key that is automatically added in the
 <tt class="docutils literal"><span class="pre">md</span></tt> binding passed to the template;</li>
-<li>URLs in the Sitemap (if it is generated).</li>
+<li>URLs in the Sitemap (if a Sitemap is generated).</li>
 </ul>
+</div></blockquote>
 </dd>
 <dt><tt class="docutils literal"><span class="pre">ignore_files</span></tt></dt>
-<dd>a (possibly empty) list of regular expressions. If the
+<dd>A (possibly empty) sequence of regular expressions. If the
 path of a file matches one of these expressions, it will
 not be processed.</dd>
 <dt><tt class="docutils literal"><span class="pre">locale_dir</span></tt></dt>
-<dd>directory where translations are stored (usually a
-directory called <tt class="docutils literal"><span class="pre">locale</span></tt>).</dd>
+<dd>The directory where translations are stored. Must be set
+to <tt class="docutils literal"><span class="pre">None</span></tt> if no such directory exists.</dd>
 <dt><tt class="docutils literal"><span class="pre">logger</span></tt></dt>
-<dd>the logger to be used. Duh.</dd>
+<dd>The logger to be used.</dd>
 <dt><tt class="docutils literal"><span class="pre">out_dir</span></tt></dt>
-<dd>directory where HTML files will be created.</dd>
+<dd>The directory where the web site will be generated. This
+directory will be created if it does not exist.</dd>
 <dt><tt class="docutils literal"><span class="pre">src_dir</span></tt></dt>
-<dd>directory where source files live.</dd>
+<dd>The directory where source files live.</dd>
 <dt><tt class="docutils literal"><span class="pre">sitemap</span></tt></dt>
-<dd>name of the Sitemap file (usually <tt class="docutils literal"><span class="pre">sitemap.xml</span></tt>) or
-<tt class="docutils literal"><span class="pre">None</span></tt> if no such file should be generated.</dd>
+<dd>The name of the Sitemap file. Must be set to <tt class="docutils literal"><span class="pre">None</span></tt> if
+you do not want such a file to be generated.</dd>
+<dt><tt class="docutils literal"><span class="pre">template</span></tt></dt>
+<dd>The filename of the template to use. It must not be a
+relative or absolute path to the file (like
+<tt class="docutils literal"><span class="pre">/path/to/templates/layout.pt</span></tt>) but only a filename
+(<tt class="docutils literal"><span class="pre">layout.pt</span></tt>).</dd>
 <dt><tt class="docutils literal"><span class="pre">template_dir</span></tt></dt>
-<dd>directory where templates live (if any).</dd>
+<dd>The directory where templates live.</dd>
 </dl>
 </dd></dl>
 

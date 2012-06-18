@@ -47,7 +47,7 @@ templates are looked up in a ``templates`` directory next to the
    $ cd $SITE_ROOT
    $ mkdir templates
    $ ls
-   src  templates
+   src    templates
    $ cd templates
 
 We are going to create our first template named ``layout.pt`` in this
@@ -88,7 +88,7 @@ We are ready to run:
    <date> - INFO - Building HTML files...
    <date> - INFO - Processing "/path/to/site1/src/index.rst" (writing in "/path/to/site1/www/index.html").
    <date> - INFO - Processing "/path/to/site1/src/second.html" (writing in "/path/to/site1/www/second.html").
-   <date> - INFO - Generated Sitemap...
+   <date> - INFO - Generating Sitemap...
    <date> - INFO - Done.
    $ ls www
    index.html   second.html     sitemap.xml

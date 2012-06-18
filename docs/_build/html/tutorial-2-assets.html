@@ -62,10 +62,10 @@
 <a class="reference internal" href="tutorial-1-intro.html#tutorial-1-intro"><em>Setting up the structure and creating source files</em></a>.)</p>
 <p>Our web site is fine, although not visually appealing. As specialists
 put it, it is ugly. We are going to use a CSS file to &#8220;enhance the
-user experience&#8221; (which means that we are going to put some colors
-here and there). We could put this CSS file in the <tt class="docutils literal"><span class="pre">src</span></tt> directory,
-but it is not content per se. So we will put it in a special directory
-named <tt class="docutils literal"><span class="pre">assets</span></tt> or, rather, in a sub-directory called <tt class="docutils literal"><span class="pre">assets/css</span></tt>.</p>
+user experience&#8221; (i.e. make it look a bit better). We could put this
+CSS file in the <tt class="docutils literal"><span class="pre">src</span></tt> directory, but it is not content per se. So we
+will put it in a special directory named <tt class="docutils literal"><span class="pre">assets</span></tt> or, rather, in a
+sub-directory called <tt class="docutils literal"><span class="pre">assets/css</span></tt>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$SITE_ROOT</span>
 <span class="nv">$ </span>mkdir -p assets/css
 <span class="nv">$ </span>ls
@@ -92,7 +92,7 @@ Soho. We may indicate an absolute path like this:</p>
 </pre></div>
 </div>
 <p>A usually better solution is to indicate a path relative to the
-configuration file, like this:</p>
+configuration file, like this (not the leading <tt class="docutils literal"><span class="pre">./</span></tt>):</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">asset_dir</span> <span class="o">=</span> <span class="s">&#39;./assets&#39;</span>
 </pre></div>
 </div>
@@ -140,7 +140,7 @@ with the <tt class="docutils literal"><span class="pre">-f</span></tt> (or <tt c
 &lt;date&gt; - INFO - Building HTML files...
 &lt;date&gt; - INFO - Processing <span class="s2">&quot;/path/to/site1/src/index.rst&quot;</span> <span class="o">(</span>writing in <span class="s2">&quot;/path/to/site1/www/index.html&quot;</span><span class="o">)</span>.
 &lt;date&gt; - INFO - Processing <span class="s2">&quot;/path/to/site1/src/second.html&quot;</span> <span class="o">(</span>writing in <span class="s2">&quot;/path/to/site1/www/second.html&quot;</span><span class="o">)</span>.
-&lt;date&gt; - INFO - Generated Sitemap...
+&lt;date&gt; - INFO - Generating Sitemap...
 &lt;date&gt; - INFO - Done.
 </pre></div>
 </div>

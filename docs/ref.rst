@@ -12,24 +12,21 @@ Configuration file settings
 ===========================
 
 The configuration file (usually named ``sohoconf.py``) is a standard
-Python module that may define the following variable:
+Python module that may define the following variables:
 
 ``asset_dir``
-
     The directory where assets (images, stylesheets, etc.) live. Must
     be set to ``None`` if no such directory exists.
 
     Default: ``'./assets'``.
 
 ``assets_only``
-
-    If set, process only assets, not source files. This may be Useful
+    If set, process only assets, not source files. This may be useful
     if the only changes are on the CSS, for example.
 
     Default: ``False``.
 
 ``base_url``
-
     The base URL of the web site. This is used only to generate the
     URLs in the Sitemap. If you want the Sitemap to have valid URLs,
     this variable must be set.
@@ -37,16 +34,14 @@ Python module that may define the following variable:
     Default: ``'http://exemple.com/soho/default-base-url'``
 
 ``do_nothing``
-
     If set, no directories nor files are created. This can be useful
-    to test a new configuration, for instance. Note that you can
-    combine this setting with ``force`` (see below): nothing will be
-    created either.
+    to test a new configuration. Note that you can combine this
+    setting with ``force`` (see below): nothing will be created
+    either.
 
     Default: ``False``
 
 ``force``
-
     If set, force the generation of HTML files, even if they have
     already been generated and are up to date. Note that you can
     combine this setting with ``do_nothing`` (see above).
@@ -54,7 +49,6 @@ Python module that may define the following variable:
     Default: ``False``
 
 ``hide_index_html``
-
     If set, ``/index.html`` suffixes are removed from:
 
     - the ``path`` key that is automatically added in the ``md``
@@ -66,28 +60,24 @@ Python module that may define the following variable:
     Default: ``True``
 
 ``ignore_files``
-
     A (possibly empty) sequence of regular expressions. If the path of
     a file matches one of these expressions, it will not be processed.
 
     Default: ``('.*\.DS_Store$', '.*~$')``
 
 ``locale_dir``
-
     The directory where translations are stored. Must be set to
     ``None`` if no such directory exists.
 
     Default: ``'./locale'``.
 
 ``logger_level``
-
     The minimum level of the messages that will be logged. Must be one
     of ``debug``, ``info``, ``warning`` or ``error``.
 
     Default: ``'info'``.
 
 ``logger_path``
-
     The path to the log file. If set to ``-`` (a single dash),
     messages will be logged on the standard output. If a path is
     provided, it must be an absolute path.
@@ -95,33 +85,28 @@ Python module that may define the following variable:
     Default: ``'-'``
 
 ``out_dir``
-
     The directory where the web site will be generated. This directory
     will be created if it does not exist.
 
     Default: ``'./www'``
 
 ``src_dir``
-
     The directory where source files live.
 
     Default: ``'./src'``
 
 ``sitemap``
-
     The name of the Sitemap file. Must be set to ``None`` if you do
     not want such a file to be generated.
 
     Default: ``'sitemap.xml'``
 
 ``template``
-
     The filename of the template to use. It must not be a relative or
     absolute path to the file (like ``/path/to/templates/layout.pt``)
     but only a filename (``layout.pt``).
 
 ``template_dir``
-
     The directory where templates live.
 
     Default: ``'./templates'``
@@ -159,43 +144,42 @@ Command-line options
 ``soho-build`` accepts the following command-line options:
 
 ``-a``, ``--assets-only``
-
     See ``assets_only`` setting above.
 
 ``-c CONFIG_FILE``
-
     Use ``CONFIG_FILE`` as the configuration file. By default, Soho
     uses a file named ``sohoconf.py`` in the working directory.
 
 ``-d``, ``--dry-run``, ``-do-nothing``
-
     See ``do_nothing`` setting above.
 
 ``-f``, ``--force``
-
     See ``force`` setting above.
 
 ``-h``, ``--help``
-
     Show all command-line options.
 
 ``-v``, ``--version``
-
     Show the version number.
 
 
 Template bindings (metadata)
 ============================
 
-For each source file that is processed, the template receives a
-binding named ``md`` that is dictionary. It contains the specific
-metadata of the source file (which inherits from the metadata of its
-directory, recursively) plus the following key:
+For each source file that is processed, the template receives two
+bindings:
 
-``path``
+``body``
+    The HTML fragment as a string.
 
-    The URL to the generated file relative to the root of the site. It
-    always starts with a ``/``.
+``md``
+    A dictionary that contains the specific metadata of the source
+    file (which inherits from the metadata of its directory,
+    recursively) plus the following key:
 
-    For example, the source file in ``src/foo/bar/file.html`` would
-    have a path equal to ``/foo/bar/file.html``.
+    ``path``
+        The URL to the generated file relative to the root of the
+        site. It always starts with a ``/``.
+
+        For example, the source file in ``src/foo/bar/file.html``
+        would have a path equal to ``/foo/bar/file.html``.

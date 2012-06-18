@@ -20,7 +20,7 @@ sites.
   :abbr:`i18n (internationalization)` through GNU gettext files. For
   further details, see the related section in the :ref:`tutorial`.
 
-- Soho does **not** automatically generate blog-like archives site
+- Soho does **not** automatically generate a blog-like archive site
   structure, or anything usually needed by blogs (such as tags or
   syndication feeds). If you need a blog generator, you may want to
   look at other tools (`Pelican`_ seems to be a popular choice).

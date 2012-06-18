@@ -12,8 +12,8 @@ are done:
 
 1. Generate HTML from the source file. The source file may be written
    in a special markup such as reStructuredText or directly in
-   HTMl. In all cases, a generator is chosen (based on the file
-   extension) and returns an HTML fragment.
+   HTML. In all cases, a generator is chosen based on the file
+   extension and returns an HTML fragment.
 
 2. Apply a template to this HTML fragment. Currently, only Page
    Templates (also known as Zope Page Templates or ZPT) is supported,

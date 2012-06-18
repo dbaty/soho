@@ -9,10 +9,10 @@ Adding assets
 
 Our web site is fine, although not visually appealing. As specialists
 put it, it is ugly. We are going to use a CSS file to "enhance the
-user experience" (which means that we are going to put some colors
-here and there). We could put this CSS file in the ``src`` directory,
-but it is not content per se. So we will put it in a special directory
-named ``assets`` or, rather, in a sub-directory called ``assets/css``.
+user experience" (i.e. make it look a bit better). We could put this
+CSS file in the ``src`` directory, but it is not content per se. So we
+will put it in a special directory named ``assets`` or, rather, in a
+sub-directory called ``assets/css``.
 
 .. code-block:: bash
 
@@ -40,7 +40,7 @@ Soho. We may indicate an absolute path like this:
    asset_dir = '/path/to/your/site1/assets'
 
 A usually better solution is to indicate a path relative to the
-configuration file, like this:
+configuration file, like this (not the leading ``./``):
 
 .. code-block:: python
 
@@ -86,7 +86,7 @@ with the ``-f`` (or ``--force``) command-line option, like this:
    <date> - INFO - Building HTML files...
    <date> - INFO - Processing "/path/to/site1/src/index.rst" (writing in "/path/to/site1/www/index.html").
    <date> - INFO - Processing "/path/to/site1/src/second.html" (writing in "/path/to/site1/www/second.html").
-   <date> - INFO - Generated Sitemap...
+   <date> - INFO - Generating Sitemap...
    <date> - INFO - Done.
 
 You may continue with the tutorial by following the

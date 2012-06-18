@@ -63,104 +63,91 @@ first.</p>
 <div class="section" id="configuration-file-settings">
 <h2>Configuration file settings<a class="headerlink" href="#configuration-file-settings" title="Permalink to this headline">¶</a></h2>
 <p>The configuration file (usually named <tt class="docutils literal"><span class="pre">sohoconf.py</span></tt>) is a standard
-Python module that may define the following variable:</p>
-<p><tt class="docutils literal"><span class="pre">asset_dir</span></tt></p>
-<blockquote>
-<div><p>The directory where assets (images, stylesheets, etc.) live. Must
+Python module that may define the following variables:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">asset_dir</span></tt></dt>
+<dd><p class="first">The directory where assets (images, stylesheets, etc.) live. Must
 be set to <tt class="docutils literal"><span class="pre">None</span></tt> if no such directory exists.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">'./assets'</span></tt>.</p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">assets_only</span></tt></p>
-<blockquote>
-<div><p>If set, process only assets, not source files. This may be Useful
+<p class="last">Default: <tt class="docutils literal"><span class="pre">'./assets'</span></tt>.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">assets_only</span></tt></dt>
+<dd><p class="first">If set, process only assets, not source files. This may be useful
 if the only changes are on the CSS, for example.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">base_url</span></tt></p>
-<blockquote>
-<div><p>The base URL of the web site. This is used only to generate the
+<p class="last">Default: <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">base_url</span></tt></dt>
+<dd><p class="first">The base URL of the web site. This is used only to generate the
 URLs in the Sitemap. If you want the Sitemap to have valid URLs,
 this variable must be set.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">'http://exemple.com/soho/default-base-url'</span></tt></p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">do_nothing</span></tt></p>
-<blockquote>
-<div><p>If set, no directories nor files are created. This can be useful
-to test a new configuration, for instance. Note that you can
-combine this setting with <tt class="docutils literal"><span class="pre">force</span></tt> (see below): nothing will be
-created either.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt></p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">force</span></tt></p>
-<blockquote>
-<div><p>If set, force the generation of HTML files, even if they have
+<p class="last">Default: <tt class="docutils literal"><span class="pre">'http://exemple.com/soho/default-base-url'</span></tt></p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">do_nothing</span></tt></dt>
+<dd><p class="first">If set, no directories nor files are created. This can be useful
+to test a new configuration. Note that you can combine this
+setting with <tt class="docutils literal"><span class="pre">force</span></tt> (see below): nothing will be created
+either.</p>
+<p class="last">Default: <tt class="docutils literal"><span class="pre">False</span></tt></p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">force</span></tt></dt>
+<dd><p class="first">If set, force the generation of HTML files, even if they have
 already been generated and are up to date. Note that you can
 combine this setting with <tt class="docutils literal"><span class="pre">do_nothing</span></tt> (see above).</p>
-<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt></p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">hide_index_html</span></tt></p>
-<blockquote>
-<div><p>If set, <tt class="docutils literal"><span class="pre">/index.html</span></tt> suffixes are removed from:</p>
+<p class="last">Default: <tt class="docutils literal"><span class="pre">False</span></tt></p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">hide_index_html</span></tt></dt>
+<dd><p class="first">If set, <tt class="docutils literal"><span class="pre">/index.html</span></tt> suffixes are removed from:</p>
 <ul class="simple">
 <li>the <tt class="docutils literal"><span class="pre">path</span></tt> key that is automatically added in the <tt class="docutils literal"><span class="pre">md</span></tt>
 binding passed to the template (see <a class="reference internal" href="#template-bindings-metadata">Template bindings
 (metadata)</a> below);</li>
 <li>URLs in the Sitemap (if a Sitemap is generated).</li>
 </ul>
-<p>Default: <tt class="docutils literal"><span class="pre">True</span></tt></p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">ignore_files</span></tt></p>
-<blockquote>
-<div><p>A (possibly empty) sequence of regular expressions. If the path of
+<p class="last">Default: <tt class="docutils literal"><span class="pre">True</span></tt></p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">ignore_files</span></tt></dt>
+<dd><p class="first">A (possibly empty) sequence of regular expressions. If the path of
 a file matches one of these expressions, it will not be processed.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">('.*\.DS_Store$',</span> <span class="pre">'.*~$')</span></tt></p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">locale_dir</span></tt></p>
-<blockquote>
-<div><p>The directory where translations are stored. Must be set to
+<p class="last">Default: <tt class="docutils literal"><span class="pre">('.*\.DS_Store$',</span> <span class="pre">'.*~$')</span></tt></p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">locale_dir</span></tt></dt>
+<dd><p class="first">The directory where translations are stored. Must be set to
 <tt class="docutils literal"><span class="pre">None</span></tt> if no such directory exists.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">'./locale'</span></tt>.</p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">logger_level</span></tt></p>
-<blockquote>
-<div><p>The minimum level of the messages that will be logged. Must be one
+<p class="last">Default: <tt class="docutils literal"><span class="pre">'./locale'</span></tt>.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">logger_level</span></tt></dt>
+<dd><p class="first">The minimum level of the messages that will be logged. Must be one
 of <tt class="docutils literal"><span class="pre">debug</span></tt>, <tt class="docutils literal"><span class="pre">info</span></tt>, <tt class="docutils literal"><span class="pre">warning</span></tt> or <tt class="docutils literal"><span class="pre">error</span></tt>.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">'info'</span></tt>.</p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">logger_path</span></tt></p>
-<blockquote>
-<div><p>The path to the log file. If set to <tt class="docutils literal"><span class="pre">-</span></tt> (a single dash),
+<p class="last">Default: <tt class="docutils literal"><span class="pre">'info'</span></tt>.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">logger_path</span></tt></dt>
+<dd><p class="first">The path to the log file. If set to <tt class="docutils literal"><span class="pre">-</span></tt> (a single dash),
 messages will be logged on the standard output. If a path is
 provided, it must be an absolute path.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">'-'</span></tt></p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">out_dir</span></tt></p>
-<blockquote>
-<div><p>The directory where the web site will be generated. This directory
+<p class="last">Default: <tt class="docutils literal"><span class="pre">'-'</span></tt></p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">out_dir</span></tt></dt>
+<dd><p class="first">The directory where the web site will be generated. This directory
 will be created if it does not exist.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">'./www'</span></tt></p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">src_dir</span></tt></p>
-<blockquote>
-<div><p>The directory where source files live.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">'./src'</span></tt></p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">sitemap</span></tt></p>
-<blockquote>
-<div><p>The name of the Sitemap file. Must be set to <tt class="docutils literal"><span class="pre">None</span></tt> if you do
+<p class="last">Default: <tt class="docutils literal"><span class="pre">'./www'</span></tt></p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">src_dir</span></tt></dt>
+<dd><p class="first">The directory where source files live.</p>
+<p class="last">Default: <tt class="docutils literal"><span class="pre">'./src'</span></tt></p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">sitemap</span></tt></dt>
+<dd><p class="first">The name of the Sitemap file. Must be set to <tt class="docutils literal"><span class="pre">None</span></tt> if you do
 not want such a file to be generated.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">'sitemap.xml'</span></tt></p>
-</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">template</span></tt></p>
-<blockquote>
-<div>The filename of the template to use. It must not be a relative or
+<p class="last">Default: <tt class="docutils literal"><span class="pre">'sitemap.xml'</span></tt></p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">template</span></tt></dt>
+<dd>The filename of the template to use. It must not be a relative or
 absolute path to the file (like <tt class="docutils literal"><span class="pre">/path/to/templates/layout.pt</span></tt>)
-but only a filename (<tt class="docutils literal"><span class="pre">layout.pt</span></tt>).</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">template_dir</span></tt></p>
-<blockquote>
-<div><p>The directory where templates live.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">'./templates'</span></tt></p>
-</div></blockquote>
+but only a filename (<tt class="docutils literal"><span class="pre">layout.pt</span></tt>).</dd>
+<dt><tt class="docutils literal"><span class="pre">template_dir</span></tt></dt>
+<dd><p class="first">The directory where templates live.</p>
+<p class="last">Default: <tt class="docutils literal"><span class="pre">'./templates'</span></tt></p>
+</dd>
+</dl>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>All directories (except <tt class="docutils literal"><span class="pre">www_dir</span></tt>) are expected to exist. If you
@@ -188,39 +175,43 @@ in your own configuration file:</p>
 <div class="section" id="command-line-options">
 <h2>Command-line options<a class="headerlink" href="#command-line-options" title="Permalink to this headline">¶</a></h2>
 <p><tt class="docutils literal"><span class="pre">soho-build</span></tt> accepts the following command-line options:</p>
-<p><tt class="docutils literal"><span class="pre">-a</span></tt>, <tt class="docutils literal"><span class="pre">--assets-only</span></tt></p>
-<blockquote>
-<div>See <tt class="docutils literal"><span class="pre">assets_only</span></tt> setting above.</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">-c</span> <span class="pre">CONFIG_FILE</span></tt></p>
-<blockquote>
-<div>Use <tt class="docutils literal"><span class="pre">CONFIG_FILE</span></tt> as the configuration file. By default, Soho
-uses a file named <tt class="docutils literal"><span class="pre">sohoconf.py</span></tt> in the working directory.</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">-d</span></tt>, <tt class="docutils literal"><span class="pre">--dry-run</span></tt>, <tt class="docutils literal"><span class="pre">-do-nothing</span></tt></p>
-<blockquote>
-<div>See <tt class="docutils literal"><span class="pre">do_nothing</span></tt> setting above.</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">-f</span></tt>, <tt class="docutils literal"><span class="pre">--force</span></tt></p>
-<blockquote>
-<div>See <tt class="docutils literal"><span class="pre">force</span></tt> setting above.</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">-h</span></tt>, <tt class="docutils literal"><span class="pre">--help</span></tt></p>
-<blockquote>
-<div>Show all command-line options.</div></blockquote>
-<p><tt class="docutils literal"><span class="pre">-v</span></tt>, <tt class="docutils literal"><span class="pre">--version</span></tt></p>
-<blockquote>
-<div>Show the version number.</div></blockquote>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">-a</span></tt>, <tt class="docutils literal"><span class="pre">--assets-only</span></tt></dt>
+<dd>See <tt class="docutils literal"><span class="pre">assets_only</span></tt> setting above.</dd>
+<dt><tt class="docutils literal"><span class="pre">-c</span> <span class="pre">CONFIG_FILE</span></tt></dt>
+<dd>Use <tt class="docutils literal"><span class="pre">CONFIG_FILE</span></tt> as the configuration file. By default, Soho
+uses a file named <tt class="docutils literal"><span class="pre">sohoconf.py</span></tt> in the working directory.</dd>
+<dt><tt class="docutils literal"><span class="pre">-d</span></tt>, <tt class="docutils literal"><span class="pre">--dry-run</span></tt>, <tt class="docutils literal"><span class="pre">-do-nothing</span></tt></dt>
+<dd>See <tt class="docutils literal"><span class="pre">do_nothing</span></tt> setting above.</dd>
+<dt><tt class="docutils literal"><span class="pre">-f</span></tt>, <tt class="docutils literal"><span class="pre">--force</span></tt></dt>
+<dd>See <tt class="docutils literal"><span class="pre">force</span></tt> setting above.</dd>
+<dt><tt class="docutils literal"><span class="pre">-h</span></tt>, <tt class="docutils literal"><span class="pre">--help</span></tt></dt>
+<dd>Show all command-line options.</dd>
+<dt><tt class="docutils literal"><span class="pre">-v</span></tt>, <tt class="docutils literal"><span class="pre">--version</span></tt></dt>
+<dd>Show the version number.</dd>
+</dl>
 </div>
 <div class="section" id="template-bindings-metadata">
 <h2>Template bindings (metadata)<a class="headerlink" href="#template-bindings-metadata" title="Permalink to this headline">¶</a></h2>
-<p>For each source file that is processed, the template receives a
-binding named <tt class="docutils literal"><span class="pre">md</span></tt> that is dictionary. It contains the specific
-metadata of the source file (which inherits from the metadata of its
-directory, recursively) plus the following key:</p>
-<p><tt class="docutils literal"><span class="pre">path</span></tt></p>
-<blockquote>
-<div><p>The URL to the generated file relative to the root of the site. It
-always starts with a <tt class="docutils literal"><span class="pre">/</span></tt>.</p>
-<p>For example, the source file in <tt class="docutils literal"><span class="pre">src/foo/bar/file.html</span></tt> would
-have a path equal to <tt class="docutils literal"><span class="pre">/foo/bar/file.html</span></tt>.</p>
-</div></blockquote>
+<p>For each source file that is processed, the template receives two
+bindings:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">body</span></tt></dt>
+<dd>The HTML fragment as a string.</dd>
+<dt><tt class="docutils literal"><span class="pre">md</span></tt></dt>
+<dd><p class="first">A dictionary that contains the specific metadata of the source
+file (which inherits from the metadata of its directory,
+recursively) plus the following key:</p>
+<dl class="last docutils">
+<dt><tt class="docutils literal"><span class="pre">path</span></tt></dt>
+<dd><p class="first">The URL to the generated file relative to the root of the
+site. It always starts with a <tt class="docutils literal"><span class="pre">/</span></tt>.</p>
+<p class="last">For example, the source file in <tt class="docutils literal"><span class="pre">src/foo/bar/file.html</span></tt>
+would have a path equal to <tt class="docutils literal"><span class="pre">/foo/bar/file.html</span></tt>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </div>
 </div>
 

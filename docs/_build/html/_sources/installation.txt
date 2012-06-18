@@ -2,8 +2,9 @@
 Installation
 ============
 
-You must have Python 2.7 or Python 3 installed. As usual, it is
-recommended that you install Soho within a `virtual environment
+You must have Python 2.7 or Python 3.2 installed. Other versions may
+work but are not supported. As usual, it is recommended that you
+install Soho within a `virtual environment
 <http://www.virtualenv.org/en/latest/index.html>`_ (virtualenv).
 
 Soho and required dependencies can be installed like this (of course,
@@ -34,7 +35,7 @@ If you are used to write documentation with Sphinx and the
 reStructuredText directives it defines (e.g. ``code-block``), you may
 want to install Sphinx as well.
 
-To benefit from i18n support:
+To benefit from :abbr:`i18n (internationalization)` support:
 
 .. code-block:: bash
 

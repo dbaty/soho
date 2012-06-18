@@ -17,7 +17,7 @@ scratch with a new empty directory:
 Again, the ``SITE_ROOT`` environment variable is not used by Soho but
 will be useful to keep track of directory changes below.
 
-The web site will have two section, one for each language:
+The web site will have two sections, one for each language:
 
 .. code-block:: bash
 
@@ -36,12 +36,12 @@ Then ``src/en/contact.html``:
 .. literalinclude:: _tutorial/4-i18n/src/en/contact.html
    :language: html
 
-And an home page in French as ``fr/index.html``:
+And an home page in French in ``fr/index.html``:
 
 .. literalinclude:: _tutorial/4-i18n/src/fr/index.html
    :language: html
 
-And the contact page ``src/fr/contact.html``:
+Finally, the contact page in ``src/fr/contact.html``:
 
 .. literalinclude:: _tutorial/4-i18n/src/fr/contact.html
    :language: html
@@ -165,7 +165,7 @@ be slightly different, but the last lines should be the same:
    msgstr ""
 
 You may edit this new ``tutorial.po`` file and add a translation (see
-highlighted line below):
+the highlighted line below):
 
 .. literalinclude:: _tutorial/4-i18n/locale/fr/LC_MESSAGES/tutorial.po
    :language: po
@@ -182,8 +182,7 @@ Once the ``tutorial.po`` file is ready, you have to compile it (into a
    compiling catalog 'locale/fr/LC_MESSAGES/tutorial.po' to 'locale/fr/LC_MESSAGES/tutorial.mo'
 
 If you change your template and add new messages or change existing
-messages to translate, you will need to perform a similar set of
-commands:
+messages, you will need to perform a similar set of commands:
 
 .. code-block:: bash
 
@@ -193,8 +192,8 @@ commands:
    $ # edit your updated '.po' file
    $ python setup.py compile_catalog
 
-Note that you need to run the ``init_catalog`` only once. Afterwards,
-you will have to run the ``update_catalog``.
+Note that you need to run the ``init_catalog`` command only once.
+Afterwards, you will have to run the ``update_catalog`` command.
 
 .. note::
 
@@ -224,8 +223,9 @@ As well, we create a similar file in ``fr/.meta.py``:
 .. literalinclude:: _tutorial/4-i18n/src/fr/.meta.py
    :language: python
 
-We also need to indicate the title of each source file in the related
-metadata, for instance in ``en/index.html.meta.py``:
+The template still expects a ``title`` key in the metadata, so we need
+to indicate this for each source file. For example, in
+``en/index.html.meta.py``:
 
 .. literalinclude:: _tutorial/4-i18n/src/en/index.html.meta.py
    :language: python
@@ -276,7 +276,7 @@ All right, we can generate our web site:
    <date> - INFO - Processing "/path/to/site2/src/en/index.html" (writing in "/path/to/site2/www/en/index.html").
    <date> - INFO - Processing "/path/to/site2/src/fr/contact.html" (writing in "/path/to/site2/www/fr/contact.html").
    <date> - INFO - Processing "/path/to/site2/src/fr/index.html" (writing in "/path/to/site2/www/fr/index.html").
-   <date> - INFO - Generated Sitemap...
+   <date> - INFO - Generating Sitemap...
    <date> - INFO - Done.
 
 We can see that the "Contact me" message appears in the proper

@@ -68,7 +68,7 @@ scratch with a new empty directory:</p>
 </div>
 <p>Again, the <tt class="docutils literal"><span class="pre">SITE_ROOT</span></tt> environment variable is not used by Soho but
 will be useful to keep track of directory changes below.</p>
-<p>The web site will have two section, one for each language:</p>
+<p>The web site will have two sections, one for each language:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>src
 <span class="nv">$ </span>mkdir en
 <span class="nv">$ </span>mkdir fr
@@ -83,11 +83,11 @@ files in each section. First, <tt class="docutils literal"><span class="pre">src
 <div class="highlight-html"><div class="highlight"><pre>You may indeed contact me.
 </pre></div>
 </div>
-<p>And an home page in French as <tt class="docutils literal"><span class="pre">fr/index.html</span></tt>:</p>
+<p>And an home page in French in <tt class="docutils literal"><span class="pre">fr/index.html</span></tt>:</p>
 <div class="highlight-html"><div class="highlight"><pre>Ceci est une page d&#39;accueil.
 </pre></div>
 </div>
-<p>And the contact page <tt class="docutils literal"><span class="pre">src/fr/contact.html</span></tt>:</p>
+<p>Finally, the contact page in <tt class="docutils literal"><span class="pre">src/fr/contact.html</span></tt>:</p>
 <div class="highlight-html"><div class="highlight"><pre>Vous pouvez me contacter.
 </pre></div>
 </div>
@@ -239,7 +239,7 @@ msgstr <span class="s2">&quot;&quot;</span>
 </pre></div>
 </div>
 <p>You may edit this new <tt class="docutils literal"><span class="pre">tutorial.po</span></tt> file and add a translation (see
-highlighted line below):</p>
+the highlighted line below):</p>
 <div class="highlight-po"><div class="highlight"><pre><span class="c1"># French translations for UNKNOWN.</span>
 <span class="c1"># Copyright (C) 2012 ORGANIZATION</span>
 <span class="c1"># This file is distributed under the same license as the UNKNOWN project.</span>
@@ -273,8 +273,7 @@ compiling catalog <span class="s1">&#39;locale/fr/LC_MESSAGES/tutorial.po&#39;</
 </pre></div>
 </div>
 <p>If you change your template and add new messages or change existing
-messages to translate, you will need to perform a similar set of
-commands:</p>
+messages, you will need to perform a similar set of commands:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="c"># change template and add or modify messages to translate</span>
 <span class="nv">$ </span>python setup.py extract_messages
 <span class="nv">$ </span>python setup.py update_catalog
@@ -282,8 +281,8 @@ commands:</p>
 <span class="nv">$ </span>python setup.py compile_catalog
 </pre></div>
 </div>
-<p>Note that you need to run the <tt class="docutils literal"><span class="pre">init_catalog</span></tt> only once. Afterwards,
-you will have to run the <tt class="docutils literal"><span class="pre">update_catalog</span></tt>.</p>
+<p>Note that you need to run the <tt class="docutils literal"><span class="pre">init_catalog</span></tt> command only once.
+Afterwards, you will have to run the <tt class="docutils literal"><span class="pre">update_catalog</span></tt> command.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last" id="note-about-babel-and-lingua">As indicated above, you do not have to use Babel and Lingua to
@@ -308,8 +307,9 @@ named <tt class="docutils literal"><span class="pre">en/.meta.py</span></tt>) an
 <div class="highlight-python"><div class="highlight"><pre><span class="n">locale</span> <span class="o">=</span> <span class="s">&#39;fr&#39;</span>
 </pre></div>
 </div>
-<p>We also need to indicate the title of each source file in the related
-metadata, for instance in <tt class="docutils literal"><span class="pre">en/index.html.meta.py</span></tt>:</p>
+<p>The template still expects a <tt class="docutils literal"><span class="pre">title</span></tt> key in the metadata, so we need
+to indicate this for each source file. For example, in
+<tt class="docutils literal"><span class="pre">en/index.html.meta.py</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">title</span> <span class="o">=</span> <span class="s">&#39;My home page&#39;</span>
 </pre></div>
 </div>
@@ -354,7 +354,7 @@ layout.pt
 &lt;date&gt; - INFO - Processing <span class="s2">&quot;/path/to/site2/src/en/index.html&quot;</span> <span class="o">(</span>writing in <span class="s2">&quot;/path/to/site2/www/en/index.html&quot;</span><span class="o">)</span>.
 &lt;date&gt; - INFO - Processing <span class="s2">&quot;/path/to/site2/src/fr/contact.html&quot;</span> <span class="o">(</span>writing in <span class="s2">&quot;/path/to/site2/www/fr/contact.html&quot;</span><span class="o">)</span>.
 &lt;date&gt; - INFO - Processing <span class="s2">&quot;/path/to/site2/src/fr/index.html&quot;</span> <span class="o">(</span>writing in <span class="s2">&quot;/path/to/site2/www/fr/index.html&quot;</span><span class="o">)</span>.
-&lt;date&gt; - INFO - Generated Sitemap...
+&lt;date&gt; - INFO - Generating Sitemap...
 &lt;date&gt; - INFO - Done.
 </pre></div>
 </div>
