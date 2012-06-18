@@ -13,10 +13,6 @@ def register_plugin(registry, spec, *keys):
         ``soho.generators.registry`` or ``soho.renderers.registry``
         depending on the type of plugin you want to register.
 
-        FIXME: we should make 'register_plugin()' private and only
-        make 'register_generator()' and 'register_renderer()'
-        functions publicly available.
-
     ``spec``
         the full path to a class, e.g.
         ``'soho.renderers.zpt.ZPTRenderer'``. The class must implement
@@ -29,9 +25,9 @@ def register_plugin(registry, spec, *keys):
         supposed to be a file extension (without the dot, for example
         ``'html'``).
 
-        FIXME: if those are file extensions, use 'exts' as the name of
-        the parameter in the publicly exposed functions (but keep keys
-        in register_plugin).
+    This function is not part of the API. You should use
+    ``soho.generator.register_generator()`` or
+    ``soho.renderers.register_renderer()`` instead.
     """
     if not keys:
         raise ValueError('You must provide at least one key to '
