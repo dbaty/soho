@@ -26,59 +26,69 @@ class Builder(object):
         in the future.
 
         ``asset_dir``
-            directory where assets (images, stylesheets, etc.) live
-            (if any).
+            The directory where assets (images, stylesheets, etc.)
+            live. Must be set to ``None`` if no such directory exists.
 
         ``assets_only``
-            Process only assets. Useful if the only change is on the
-            CSS, for example.
+            If set, process only assets, not source files. This may be
+            useful if the only changes are on the CSS, for example.
 
         ``base_url``
-            Base URL of the web site. This is used only to generate
-            the Sitemap.
+            The base URL of the web site. This is used only to
+            generate the URLs in the Sitemap. If you want the Sitemap
+            to have valid URLs, this variable must be set.
 
         ``do_nothing``
-            if set, nothing is created: no directory, no files and no
-            wheelbarrows (the latter are evil, anyway: you should not
-            create wheelbarrows unless you really know what you are
-            doing).
+            If set, no directories nor files are created. This can be
+            useful to test a new configuration. Note that you can
+            combine this setting with ``force`` (see below): nothing
+            will be created either.
 
         ``force``
-            if set, force the generation of HTML files, even if they
-            have already been generated and are up to date.
+            If set, force the generation of HTML files, even if they
+            have already been generated and are up to date. Note that
+            you can combine this setting with ``do_nothing`` (see
+            above).
 
         ``hide_index_html``
-            if set, ``/index.html`` suffixes are removed from:
+            If set, ``/index.html`` suffixes are removed from:
 
-            - the ``path`` attribute that is automatically added in the
-              ``md`` binding passed to the template;
+              - the ``path`` key that is automatically added in the
+                ``md`` binding passed to the template;
 
-            - URLs in the Sitemap (if it is generated).
+              - URLs in the Sitemap (if a Sitemap is generated).
 
         ``ignore_files``
-            a (possibly empty) list of regular expressions. If the
+            A (possibly empty) sequence of regular expressions. If the
             path of a file matches one of these expressions, it will
             not be processed.
 
         ``locale_dir``
-            directory where translations are stored (usually a
-            directory called ``locale``).
+            The directory where translations are stored. Must be set
+            to ``None`` if no such directory exists.
 
         ``logger``
-            the logger to be used. Duh.
+            The logger to be used.
 
         ``out_dir``
-            directory where HTML files will be created.
+            The directory where the web site will be generated. This
+            directory will be created if it does not exist.
 
         ``src_dir``
-            directory where source files live.
+            The directory where source files live.
 
         ``sitemap``
-            name of the Sitemap file (usually ``sitemap.xml``) or
-            ``None`` if no such file should be generated.
+            The name of the Sitemap file. Must be set to ``None`` if
+            you do not want such a file to be generated.
+
+        ``template``
+            The filename of the template to use. It must not be a
+            relative or absolute path to the file (like
+            ``/path/to/templates/layout.pt``) but only a filename
+            (``layout.pt``).
 
         ``template_dir``
-            directory where templates live (if any).
+            The directory where templates live.
         """
         self.logger = logger
         self._src_dir = src_dir
