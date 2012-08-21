@@ -21,8 +21,8 @@ def interpolate(s, mapping):
 
 
 class TranslatorWrapper(object):
-    """A wrapper that hold instances of ``gettext.GNUTranslations``
-    and take care of choosing the right one depending on the domain
+    """A wrapper that holds instances of ``gettext.GNUTranslations``
+    and takes care of choosing the right one depending on the domain
     and the locale that are requested at translation time.
     """
 
