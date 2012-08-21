@@ -56,8 +56,17 @@
             
   <div class="section" id="list-of-releases-of-soho">
 <h1>List of releases of Soho<a class="headerlink" href="#list-of-releases-of-soho" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="soho-0-8-2012-08-17">
-<h2>Soho 0.8 (2012-08-17)<a class="headerlink" href="#soho-0-8-2012-08-17" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="unreleased">
+<h2>unreleased<a class="headerlink" href="#unreleased" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fix bug in tests that caused functional tests to fail. This was due
+to the fact that &#8220;git clone&#8221; does not preserve file modification
+time: this caused test failures because we were diff&#8217;ing
+&#8220;sitemap.xml&#8221; files that do contain last modification time.</li>
+</ul>
+</div>
+<div class="section" id="soho-0-8-0-2012-08-17">
+<h2>Soho 0.8.0 (2012-08-17)<a class="headerlink" href="#soho-0-8-0-2012-08-17" title="Permalink to this headline">¶</a></h2>
 <p>Major rewrite. Old Soho projects should be easily moved to the new
 format (see documentation).</p>
 </div>
@@ -77,7 +86,8 @@ format (see documentation).</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">List of releases of Soho</a><ul>
-<li><a class="reference internal" href="#soho-0-8-2012-08-17">Soho 0.8 (2012-08-17)</a></li>
+<li><a class="reference internal" href="#unreleased">unreleased</a></li>
+<li><a class="reference internal" href="#soho-0-8-0-2012-08-17">Soho 0.8.0 (2012-08-17)</a></li>
 <li><a class="reference internal" href="#soho-0-7-2008-02-17">Soho 0.7 (2008-02-17)</a></li>
 </ul>
 </li>

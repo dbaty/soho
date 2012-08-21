@@ -46,12 +46,43 @@ class BuilderFunctionalTest(object):
         self.assertEqual(diff.right_only, [])
         self.assertEqual(diff.diff_files, [])
 
+    def _fix_lastmod_in_sitemap(self, out_dir):
+        # 'git clone' does not preserve the last modification time of
+        # files. The modification time of all files is set to when
+        # they were cloned. As such, all '<lastmod>' elements in the
+        # generated 'sitemap.xml' will have unknown values that are
+        # different from what we have in the 'www' directories. Here,
+        # we overwrite generated 'sitemap.xml' and set the '<lastmod>'
+        # elements to what we expect. The rest of the file is left
+        # untouched.
+        import os
+        import re
+        regexp = re.compile('(<lastmod>.*?</lastmod>)')
+        expected = os.path.join(self.expected_dir, 'sitemap.xml')
+        with open(expected) as fp:
+            elements = regexp.findall(fp.read())
+        test = os.path.join(out_dir, 'sitemap.xml')
+        with open(test) as fp:
+            bogus = fp.read()
+        def fix_element(matchobj):
+            return elements.pop(0)
+        fixed = regexp.sub(fix_element, bogus)
+        with open(test, 'w') as fp:
+            fp.write(fixed)
+
+    def _build(self, builder, out_dir):
+        import os
+        builder.build()
+        sitemap = os.path.join(out_dir, 'sitemap.xml')
+        if os.path.exists(sitemap):
+            self._fix_lastmod_in_sitemap(out_dir)
+
     def test_builder(self):
         from .base import make_options
         options = make_options(config_file=self.config_file)
         with temp_folder() as out_dir:
             builder = self._make_builder(options=options, out_dir=out_dir)
-            builder.build()
+            self._build(builder, out_dir)
             self.assertBuilderOutput(out_dir, self.expected_dir)
 
 
@@ -67,7 +98,7 @@ class TestSite1(BuilderFunctionalTest, TestCase):
         options = make_options(config_file=self.config_file, do_nothing=True)
         with temp_folder() as out_dir:
             builder = self._make_builder(options=options, out_dir=out_dir)
-            builder.build()
+            self._build(builder, out_dir)
             self.assertEqual(os.listdir(out_dir), [])
 
     def test_builder_build_twice(self):
@@ -75,10 +106,10 @@ class TestSite1(BuilderFunctionalTest, TestCase):
         options = make_options(config_file=self.config_file)
         with temp_folder() as out_dir:
             builder = self._make_builder(options=options, out_dir=out_dir)
-            builder.build()
+            self._build(builder, out_dir)
             # build again
             builder = self._make_builder(options=options, out_dir=out_dir)
-            builder.build()
+            self._build(builder, out_dir)
             self.assertBuilderOutput(out_dir, self.expected_dir)
 
 
