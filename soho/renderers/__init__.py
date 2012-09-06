@@ -9,7 +9,6 @@ def register_renderer(spec, *ext):
     """Register a renderer.
 
     ``spec``
-
         a string that represents the full path to a class, for example
         ``'soho.renderers.zpt.ZPTRenderer'``. The class must implement
         the same interface as :class:`soho.renderers.BaseRenderer`.
