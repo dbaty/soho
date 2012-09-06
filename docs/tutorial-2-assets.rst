@@ -40,7 +40,7 @@ Soho. We may indicate an absolute path like this:
    asset_dir = '/path/to/your/site1/assets'
 
 A usually better solution is to indicate a path relative to the
-configuration file, like this (not the leading ``./``):
+configuration file, like this (note the leading ``./``):
 
 .. code-block:: python
 

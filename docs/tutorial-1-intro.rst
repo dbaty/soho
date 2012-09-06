@@ -57,7 +57,7 @@ indeed:
 .. literalinclude:: _tutorial/1-intro/templates/layout.pt
    :language: xml
 
-We are using `Page Templates <http://pagetemplates.org/docs/latest>`_
+We are using `Page Templates <http://pagetemplates.org/docs/latest/>`_
 (also known as Zope Page Templates or ZPT). As you can notice, the
 only binding here is named ``body`` and contain the HTML fragment that
 has been generated from our source files. We will see later that we

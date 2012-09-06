@@ -21,6 +21,7 @@ The web site will have two sections, one for each language:
 
 .. code-block:: bash
 
+   $ mkdir src
    $ cd src
    $ mkdir en
    $ mkdir fr
@@ -36,7 +37,7 @@ Then ``src/en/contact.html``:
 .. literalinclude:: _tutorial/4-i18n/src/en/contact.html
    :language: html
 
-And an home page in French in ``fr/index.html``:
+And a home page in French in ``src/fr/index.html``:
 
 .. literalinclude:: _tutorial/4-i18n/src/fr/index.html
    :language: html
@@ -47,9 +48,9 @@ Finally, the contact page in ``src/fr/contact.html``:
    :language: html
 
 Until now, this is very similar to what we have done in the previous
-section of the tutorial. We have translated everything in source
+section of the tutorial. We have translated content in source
 files. We will now add some automatically translated content in the
-template (in ``templates/layout.pt``):
+template (``templates/layout.pt``):
 
 .. literalinclude:: _tutorial/4-i18n/templates/layout.pt
    :language: xml
